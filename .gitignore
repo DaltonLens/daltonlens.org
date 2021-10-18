@@ -12,3 +12,6 @@ _notebooks/.ipynb_checkpoints
 .netlify
 .tweet-cache
 __pycache__
+settings.ini
+_posts/2021-10-17-Understanding-Color-Blindness-Simulations.md
+images/copied_from_nb
