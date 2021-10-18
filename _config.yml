@@ -6,8 +6,8 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: fastpages
-description: An easy to use blogging platform with support for Jupyter Notebooks.
+title: DaltonLens
+description: Software tools and technical posts to make the life of colorblind people easier. Includes color filters and color blindness simulation.
 github_username: DaltonLens
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "daltonlens.org"
@@ -39,8 +39,8 @@ baseurl: "" # the subpath of your site, e.g. "/blog".
 # Github and twitter are optional:
 minima:
   social_links:
-    twitter: fastdotai
-    github: fastai
+    twitter: nburrus
+    github: DaltonLens
 
 # Set this to true to get LaTeX math equation support
 use_math: 
@@ -55,7 +55,7 @@ show_image: false
 annotations: false
 
 # Set this to true to display tags on each post
-show_tags: true
+show_tags: false
 
 # Add your Google Analytics ID here if you have one and want to use it
 google_analytics: 
@@ -93,6 +93,7 @@ plugins:
   - jekyll-remote-theme
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-scholar
   - jemoji
 
 # See https://jekyllrb.com/docs/pagination/
@@ -123,3 +124,6 @@ feed:
   
 exclude:
   - settings.ini
+
+scholar:
+  style: apa-6th-edition
