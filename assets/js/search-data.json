@@ -28,8 +28,8 @@
 
   
       ,"page1": {
-          "title": "About Me",
-          "content": "This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
+          "title": "About",
+          "content": "DaltonLens is a project aiming at simplifying the life of color blind people with utility software and technical blog posts. . DaltonLens for Desktop is a utility for macOS, Windows and Linux providing various color filters and tools to read color-coded charts and plots. . DaltonLens-Python is a toolbox for research and development on color vision deficiency algorithms. It includes a color blindness simulator. . It is developed as a hobby project by Nicolas Burrus. .",
           "url": "http://daltonlens.org/about/",
           "relUrl": "/about/",
           "date": ""
@@ -56,10 +56,7 @@
   
 
   
-  
-
-  
-      ,"page10": {
+      ,"page9": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "http://daltonlens.org/robots.txt",
@@ -67,6 +64,9 @@
           "date": ""
       }
       
+  
+
+  
   
 
 }
