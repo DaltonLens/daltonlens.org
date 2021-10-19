@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Review of Open Source Color Blindness Simulations | DaltonLens</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Review of Open Source Color Blindness Simulations" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Let’s stop copy/pasting code without understanding where it comes from :-)" />
+<meta property="og:description" content="Let’s stop copy/pasting code without understanding where it comes from :-)" />
+<link rel="canonical" href="http://daltonlens.org/opensource-cvd-simulation/" />
+<meta property="og:url" content="http://daltonlens.org/opensource-cvd-simulation/" />
+<meta property="og:site_name" content="DaltonLens" />
+<meta property="og:image" content="http://daltonlens.org/images/chart-preview.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-19T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"http://daltonlens.org/opensource-cvd-simulation/","headline":"Review of Open Source Color Blindness Simulations","dateModified":"2021-10-19T00:00:00-05:00","datePublished":"2021-10-19T00:00:00-05:00","image":"http://daltonlens.org/images/chart-preview.png","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://daltonlens.org/opensource-cvd-simulation/"},"description":"Let’s stop copy/pasting code without understanding where it comes from :-)","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://daltonlens.org/feed.xml" title="DaltonLens" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">DaltonLens</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Review of Open Source Color Blindness Simulations</h1><p class="page-description">Let's stop copy/pasting code without understanding where it comes from :-)</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-19T00:00:00-05:00" itemprop="datePublished">
+        Oct 19, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      21 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/DaltonLens/daltonlens.org/tree/master/_notebooks/2021-10-19-OpenSource-ColorBlindness-Simulations.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/DaltonLens/daltonlens.org/master?filepath=_notebooks%2F2021-10-19-OpenSource-ColorBlindness-Simulations.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/DaltonLens/daltonlens.org/blob/master/_notebooks/2021-10-19-OpenSource-ColorBlindness-Simulations.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Why-simulate-color-vision-deficiencies-(CVD)?">Why simulate color vision deficiencies (CVD)? </a></li>
+<li class="toc-entry toc-h2"><a href="#Making-sense-of-the-available-models-and-programs">Making sense of the available models and programs </a></li>
+<li class="toc-entry toc-h2"><a href="#Vocabulary-notes">Vocabulary notes </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Overview-of-the-main-existing-approaches">Overview of the main existing approaches </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Coblis-and-the-HCIRN-Color-Blind-Simulation-function">Coblis and the HCIRN Color Blind Simulation function </a></li>
+<li class="toc-entry toc-h2"><a href="#Brettel-&-Mollon-1997">Brettel &amp; Mollon 1997 </a></li>
+<li class="toc-entry toc-h2"><a href="#Viénot,-Brettel-&-Mollon-1999">Viénot, Brettel &amp; Mollon 1999 </a></li>
+<li class="toc-entry toc-h2"><a href="#Machado-2009">Machado 2009 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#So-which-one-should-we-use?">So which one should we use? </a></li>
+<li class="toc-entry toc-h1"><a href="#Show-me-some-images!">Show me some images! </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#For-protanopia">For protanopia </a></li>
+<li class="toc-entry toc-h2"><a href="#For-deuteranopia">For deuteranopia </a></li>
+<li class="toc-entry toc-h2"><a href="#For-tritanopia">For tritanopia </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#How-accurate-are-these-simulations?">How accurate are these simulations? </a></li>
+<li class="toc-entry toc-h1"><a href="#Conclusion">Conclusion </a></li>
+<li class="toc-entry toc-h1"><a href="#Bibliography">Bibliography </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-10-19-OpenSource-ColorBlindness-Simulations.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">
+<a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
+</h1>
+<h2 id="Why-simulate-color-vision-deficiencies-(CVD)?">
+<a class="anchor" href="#Why-simulate-color-vision-deficiencies-(CVD)?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why simulate color vision deficiencies (CVD)?<a class="anchor-link" href="#Why-simulate-color-vision-deficiencies-(CVD)?"> </a>
+</h2>
+<p>Color vision deficiencies (CVD), commonly called "color blindness" affects ~8% of the male population and ~0.4% of the female population. Being able to accurately simulate them is important for several reasons:</p>
+<ul>
+<li>Communicate about this issue and help other people understand it</li>
+<li>Help designers choose color schemes that everyone will perceive</li>
+<li>Create tools to enhance images and help color blind people in their daily tasks. Most correction tools start by simulating how a person with CVD would see the image, and then find some way to spread the lost information into the channels that are better perceived or playing with the light intensity to restore the contrast.</li>
+</ul>
+<p>There are many online resources to understand CVD in detail. The <a href="https://en.wikipedia.org/wiki/Color_blindness">wikipedia</a> page and <a href="https://color-blindness.com/">color-blindness.com</a> are a good start, but here are some relevant facts to understand CVD simulations:</p>
+<ul>
+<li>Human color perception is achieved via cone cells in the retina. Humans with normal vision have 3 kinds of cells, sensitive to different light wavelengths. L cones capture Long-wavelength (~red), M cones capture Medium-wavelength (~green) and S cones capture Short-wavelength (~blue). Their response over the light spectrum is shown below.</li>
+</ul>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Cone_spectral_sensitivities.png" alt="image" title="LMS Response over the light wavelength (from Wikipedia). L is roughly centered on red, M on green and S on blue. Note that the responses overlap significantly, especially for L and M cones.">.</p>
+<ul>
+<li>
+<p>Most color vision deficiencies can be explained by one type of cone not working properly. Protanopes, deuteranopes and tritanopes respectively lack or have malfunctioning L, M, or S cone cells.</p>
+</li>
+<li>
+<p>CVD simulations based on physiological experiments generally consists in transforming the image to a color space where the influence of each kind of cone cells is explicit and can be decreased or removed easily. The <a href="https://en.wikipedia.org/wiki/LMS_color_space">LMS</a> color space was designed to specifically match the human cone responses and is thus the choice of the vast majority of methods. So the typical pipeline consists in transforming the RGB image into LMS, apply the simulation there, and go back to RGB.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Making-sense-of-the-available-models-and-programs">
+<a class="anchor" href="#Making-sense-of-the-available-models-and-programs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Making sense of the available models and programs<a class="anchor-link" href="#Making-sense-of-the-available-models-and-programs"> </a>
+</h2>
+<p>There are many methods to simulate color blindness, and we can easily find lots of open source programs to do so. However color perception theory is complex and most developers (like me!) end up copying existing algorithms without having a solid understanding of where they come from and which one is best. It is also difficult to evaluate the accuracy of the simulations, so very bad simulations can still appear reasonable to an untrained observer.</p>
+<p>While developing <a href="daltonlens.org">DaltonLens</a> I got frustrated by this as I was trying to decide which method I should implement. And being a mild-protan myself, I was often not very convinced by the results of existing methods as they tended to make the simulated images way too exaggerated. But for the first version I had little time and copy/pasted some code for the daltonize filters, which turned out to be quite wrong.</p>
+<p>So I've decided to dig further into the history of the available algorithms and try to understand where they come from and how much we can trust them.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Vocabulary-notes">
+<a class="anchor" href="#Vocabulary-notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vocabulary notes<a class="anchor-link" href="#Vocabulary-notes"> </a>
+</h2>
+<p>As it can get confusing, here is a summary of the main terms to describe CVD variants:</p>
+<ul>
+<li>
+<p><em>Dichromacy</em> refers to one kind of cone cells fully missing. The corresponding deficiencies for each kind are called <em>protanopia</em>, <em>deuteranopia</em> and <em>tritanopia</em>. The color space of people with dichromacy (<em>dichromats</em>) is basically 2D instead of 3D.</p>
+</li>
+<li>
+<p><em>Anomalous trichromacy</em> refers to having one kind of cone cells with only a partial disfunction (e.g less density or with a shifted wavelength peak). The corresponding deficiencies are called <em>protanomaly</em>, <em>deuteranomaly</em> and <em>tritanomaly</em>. In software simulations the degree of severity is usually encoded as a float value between 0 (no deficiency) and 1 (dichromacy).</p>
+</li>
+<li>
+<p>A <em>protan</em> or a <em>protanope</em> is a person suffering from protanopia ("strong" protan) or protanomaly ("mild" protan). <em>Deutan/deuteranope</em> and <em>tritan/tritanope</em> are defined similarly.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Overview-of-the-main-existing-approaches">
+<a class="anchor" href="#Overview-of-the-main-existing-approaches" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview of the main existing approaches<a class="anchor-link" href="#Overview-of-the-main-existing-approaches"> </a>
+</h1>
+<p>Let's start by looking at the most popular software and research papers. To complete this section I used the nice thread and software links compiled by Markku Laine in a <a href="https://github.com/aalto-ui/aim/pull/13">pull-request of the Aalto Interface Metrics (AIM) project</a>.</p>
+<h2 id="Coblis-and-the-HCIRN-Color-Blind-Simulation-function">
+<a class="anchor" href="#Coblis-and-the-HCIRN-Color-Blind-Simulation-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coblis and the HCIRN Color Blind Simulation function<a class="anchor-link" href="#Coblis-and-the-HCIRN-Color-Blind-Simulation-function"> </a>
+</h2>
+<p>A google search for "color blindness simulation" first returns <a href="https://color-blindness.com/">color-blindness.com</a>. I mentioned that website before because it has great introductory material, but it also proposes a CVD simulator, called <em>Coblis</em>. Being one of the oldest and easiest tool to test it has inspired lots of other software. But digging into the history of the code is interesting and shows that its accuracy is questionable, especially in the older version.</p>
+<p>The simulator now relies on the source code of MaPePeR <a href="https://github.com/MaPePeR/jsColorblindSimulator">https://github.com/MaPePeR/jsColorblindSimulator</a> . It implements two different functions, one based on the "Color-Matrix" algorithm (Coblis v1), and one based on the "HCIRN Color Blind Simulation function" (Coblis v2, the default as of October 2021).</p>
+<p>The "Color-Matrix" algorithm was developed by <a href="http://web.archive.org/web/20081014161121/http://www.colorjack.com/labs/colormatrix/">www.colorjack.com</a>. He converted the "HCIRN Color Blind Simulation function" that works in the CIE-XYZ color-space into a faster matrix that directly works on RGB values (that kind of optimization mattered back then). He did so by running the full function on 3 RGB values (pure red, pure green, pure blue) to deduce the 3x3 transformation matrices. So this approach only ensures the equivalence for these 3 colors. It also ignores the non-linearity of sRGB images, which was approximately handled in the original code with a gamma function (more about sRGB in a followup post). The author himself later said that this was a one-night hack and that nobody should use it anymore in a <a href="https://web.archive.org/web/20111123145815/http://kaioa.com/node/75#comment-247">comment on kaioa.com</a>:</p>
+<blockquote>
+<p>You're right, the ColorMatrix version is very simplified, and not accurate. I created that color matrix one night (<a href="http://www.colorjack.com/labs/colormatrix/">http://www.colorjack.com/labs/colormatrix/</a>) and since then it's shown up many places... I should probably take that page down before it spreads more! Anyways, it gives you an idea of what it might look like, but for the real thing...
+The author actually took down that page since then, but it's hard to stop the spread.</p>
+</blockquote>
+<p>Regarding the proper "HCIRN Color Blind Simulation function", the first public code was developed by <a href="http://colorlab.wickline.org/colorblind/colorlab/docs/acknowledgments.html">Matthew Wickline</a> and made available as a javascript <a href="https://web.archive.org/web/20071012020140/http://www.nofunc.com/Color_Blindness_Library/">Color Blindness Library</a>. The author says in the <a href="http://colorlab.wickline.org/colorblind/colorlab/docs/acknowledgments.html">acknowledgments</a> that he wrote it by adapting some Java code that he kindly got from Thomas Wolfmaier after reading his 1999 article <a href="https://web.archive.org/web/20071212234539/http://www.internettg.org/newsletter/mar99/accessibility_color_challenged.html">Designing for the Color-Challenged: A Challenge</a>.</p>
+<p>This article explains that they implemented a method based on the seminal work of <a class="citation" href="#meyer_color_defective_1988">(Meyer &amp; Greenberg, 1988)</a>, which was the first to propose an algorithm to simulate CVD, in the CIE XYZ color space. However the article of Thomas Wolfmaier was not peer-reviewed and their implementation was not validated experimentally, here are their conclusions:</p>
+<blockquote>
+<p>Has the model been validated on individuals with color vision deficiencies? Unfortunately, we have not yet been able to test the model. We did apply the model to some of the tables of the UMIST 'For Fun' Colour Vision Test and were able to reproduce the predicted confusions. If you have some form of color vision deficiency, please have a look at the design aids described in the following sections and let us know how well the model predicts the color you see.</p>
+<p>How accurate is the model? The model provides only a rough approximation. It includes estimates for some properties of color vision defects as well as assumptions about the hardware on which the colors are displayed. It also does not account for the reduced sensitivity to reds of individuals with protan defects.</p>
+</blockquote>
+<p>It is worth noting that <a class="citation" href="#meyer_color_defective_1988">(Meyer &amp; Greenberg, 1988)</a> did some experimental validation, where they noted that dichromats responded favorably to the simulations, despite some issues with highly saturated colors. <a class="citation" href="#vienot_digital_1999">(Viénot, Brettel, &amp; Mollon, 1999)</a> later commented that working in the CIE XYZ color space is worse as it does not take into account the altered perception of luminosity for dichromats.</p>
+<p>So to summarize:- The ColorMatrix algorithm that was used in the first version of Coblis was a one-night hack severely simplifying the Javascript code of Matthew Wickline, which itself was an adaptation of the Java code of Thomas Wolfmaier in 1999. The author of the ColorMatrix himself said that we should not use it and removed the code, so let's stop using that.</p>
+<ul>
+<li>
+<p>The code adapted by Matthew Wickline from Thomas Wolfmaier article was inspired by the Meyer and Greeberg paper which was a solid work. But the code itself was not validated and the experimental validation in the 1988 paper was not fully convincing (and a bit old!). So it's unclear whether we can trust it, but in the academic literature researchers have moved to more recent approaches. In any case that code needs to be adapted to modern monitors by implementing the proper sRGB transform from RGB to CIE XYZ as the original code used a generic gamma correction (there was no sRGB standard back then).</p>
+</li>
+<li>
+<p>Last, the license of the code is not super permissive, it cannot be used for commercial applications.</p>
+</li>
+</ul>
+<p>Some examples of software using the HCIRN Color Blind Simulation function or the ColorMatrix are:</p>
+<ul>
+<li>
+<a href="https://github.com/jkulesza/peacock">Peacock (Python &amp; C++)</a>. HCIRN Color Blind Simulation function.</li>
+<li>
+<a href="https://github.com/oftheheadland/Colorblindly">Colorblindly (chrome extension)</a>. Uses the ColorMatrix.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Brettel-&amp;-Mollon-1997">
+<a class="anchor" href="#Brettel-&amp;-Mollon-1997" aria-hidden="true"><span class="octicon octicon-link"></span></a>Brettel &amp; Mollon 1997<a class="anchor-link" href="#Brettel-&amp;-Mollon-1997"> </a>
+</h2>
+<p>A more modern algorithm for dichromacy simulation was developed by <a class="citation" href="#brettel_computerized_1997">(Brettel &amp; Mollon, 1997)</a>. Their paper has become a reference in the research community. The most famous implementation is the one of <a href="www.vischeck.com">www.vischeck.com</a> in Java. It also had an online version, but the website is now broken. Vischeck was used to generate the examples in the reference color science book <a class="citation" href="#fairchild2013color">(Fairchild, 2013)</a>.</p>
+<p>An important note is that it was performed on an old (but calibrated!) CRT monitor, so implementations of this approach need to be adapted for modern LCD monitors and the sRGB standard.</p>
+<p>There are comparatively few open source implementation of this algorithm as the follow-up <a class="citation" href="#vienot_digital_1999">(Viénot, Brettel, &amp; Mollon, 1999)</a> paper from the same group proposed a simpler algorithm for protanopia and deuteranopia that is also more adapted to digital monitors. However it's worth noting that this newer approach does not work well for tritanopia, so the Brettel 1997 approach is still relevant in that case.</p>
+<p>Another popular recent work from <a class="citation" href="#machado_physiologically_based_2009">(Machado, Oliveira, &amp; Fernandes, 2009)</a> uses Brettel 1997 as their reference and are actually very similar to it for dichromacy (by design, they tuned their parameters to match it).</p>
+<p>Note that even if it was initially developed for full dichromacy, the approach can be adapted to simulate less severe anomalous trichromacy by either linearly interpolating between the original image and the dichromat image or by applying smaller corrections with fixed steps (<a class="citation" href="#flatla_so_2012">(Flatla &amp; Gutwin, 2012)</a>). It looks reasonable in practice, but the interpolation approach was not formally evaluated.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Viénot,-Brettel-&amp;-Mollon-1999">
+<a class="anchor" href="#Vi%C3%A9not,-Brettel-&amp;-Mollon-1999" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viénot, Brettel &amp; Mollon 1999<a class="anchor-link" href="#Vi%C3%A9not,-Brettel-&amp;-Mollon-1999"> </a>
+</h2>
+<p><a class="citation" href="#vienot_digital_1999">(Viénot, Brettel, &amp; Mollon, 1999)</a> builds on the Brettel 1997 paper. In a nutshell it simplifies the math and adapts it for digital displays. It has become a very popular reference, in large part thanks to the daltonize algorithm of <a class="citation" href="#fidaner_analysis_2005">(Fidaner, Lin, &amp; Ozguven, 2005)</a>. That daltonize algorithm aims at improving the color contrasts of a given image for a person with CVD. The first step is to simulate how the image is seen by a dichromat, and then distribute the error w.r.t the original image on the other color channels. That algorithm became very popular and got copy/pasted/adapted many times. Since it used the simulation algorithm of Viénot 1999 in the first step, this approach has become popular along the way too.</p>
+<p>For protanopia and deuteranopia the results are reasonably similar between Viénot 1999 and Brettel 1997, so the faster one can be preferred. But again the Viénot paper is not well adapted to tritanopia. The authors themselves only mention protanopia and deuteranopia in it.</p>
+<p>It can also be adapted for anomalous trichromacy like the Brettel 1997 approach, with the same limits about the validation.</p>
+<p>Likewise, one challenge when implementing that algorithm is that the original paper was also using CRT monitors, and thus did not use the sRGB standard. So their RGB to XYZ matrices have to be adjusted for modern monitors, but many open source code copied the original matrices from <a class="citation" href="#fidaner_analysis_2005">(Fidaner, Lin, &amp; Ozguven, 2005)</a> and are thus inaccurate.</p>
+<p>A worse but also common issue is that the code from <a class="citation" href="#fidaner_analysis_2005">(Fidaner, Lin, &amp; Ozguven, 2005)</a> actually did not include any gamma decoding of the input image, so many software just apply the matrices on the raw RGB values of the image and skip the sRGB decoding step altogether. This makes a whole range of colors look way too dark.</p>
+<p>Here are a few examples of open source projects implementing it:</p>
+<ul>
+<li>
+<p><a href="https://github.com/joergdietrich/daltonize">daltonize.py (Python)</a>. Adapted to sRGB, but uses the CIECAM02 sharpened matrix for the RGB-&gt;LMS conversion. I think this is debatable for CVD simulation but we'll dive into that in a future post.</p>
+</li>
+<li>
+<p><a href="https://ixora.io/projects/colorblindness/color-blindness-simulation-research/">Ixora.io (Processing)</a>. Adapted to sRGB and uses the Hunt-Pointer-Estevez matrix for RGB-&gt;LMS.</p>
+</li>
+<li>
+<p><a href="http://daltonize.org">daltonize.org (several languages)</a>. Most software listed there are adaptation of <a class="citation" href="#fidaner_analysis_2005">(Fidaner, Lin, &amp; Ozguven, 2005)</a>. And most forget the sRGB decoding and still use the original CRT RGB-&gt;XYZ conversion.</p>
+</li>
+<li>
+<p><a href="https://github.com/tsarjak/Simulate-Correct-ColorBlindness">tsarjak/Simulate-Correct-ColorBlindness (Python)</a>. Also extends the approach to anomalous trichromacy by linearly interpolating between the original image and the dichromat image. Still uses the original RGB&lt;&gt;LMS conversion for CRT monitors.</p>
+</li>
+<li>
+<p><a href="https://github.com/asada0/ChromaticVisionSimulator">ChromaticVisionSimulator</a>. Mobile app for Android. Uses a proper sRGB-&gt;XYZ conversion. Uses a linear interpolation with the original image to simulate anomalous trichromacy.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Machado-2009">
+<a class="anchor" href="#Machado-2009" aria-hidden="true"><span class="octicon octicon-link"></span></a>Machado 2009<a class="anchor-link" href="#Machado-2009"> </a>
+</h2>
+<p>Even more recently <a class="citation" href="#machado_physiologically_based_2009">(Machado, Oliveira, &amp; Fernandes, 2009)</a> proposed an approach that supports both dichromacy and anomalous trichromacy in a principled way. They also made the nice and very welcome effort to publish easy-to-use matrices on <a href="https://www.inf.ufrgs.br/~oliveira/pubs_files/CVD_Simulation/CVD_Simulation.html">their website</a> and it is becoming more and more popular.</p>
+<p>As mentioned earlier it is actually very similar to Brettel 1997 for dichromacy as they tuned their scaling parameters to match it. However it does not work very well for tritanopia as their model is to shift the peak response of the faulty kind of cone cells, and how it should be shifted is unclear for tritanopes. They also did not do any experimental validation with tritanopes.</p>
+<p>For anomalous trichromacy the results are reasonably similar to the variant of Brettel 1997 that interpolates with the original image, but since the Machado approach is more principled it can be preferred.</p>
+<p>Here are some examples of software using this approach:</p>
+<ul>
+<li>
+<p><a href="https://github.com/colour-science/colour">colour-science.org (Python)</a>. Also has code to re-compute the predefined matrices. Overall a very comprehensive reference for anything color-related.</p>
+</li>
+<li>
+<p><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1003700#c33">Chromium</a> and <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1655053">Mozilla</a> used to rely on the ColorMatrix (Coblis v1) algorithm but fortunately now rely on the Machado approach.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="So-which-one-should-we-use?">
+<a class="anchor" href="#So-which-one-should-we-use?" aria-hidden="true"><span class="octicon octicon-link"></span></a>So which one should we use?<a class="anchor-link" href="#So-which-one-should-we-use?"> </a>
+</h1>
+<p>Given the limits of the existing algorithms I would recommend different methods depending on the kind of deficiency:</p>
+<ul>
+<li>
+<p>For tritanopia the Brettel 1997 approach is still the most solid and basically only valid choice. For tritanomaly I'd also recommend it with an interpolation factor with the original image, but this is more debatable.</p>
+</li>
+<li>
+<p>For protanopia and deuteranopia Viénot 1999, Brettel 1997 and Machado 2009 are solid choices, with a slight advantage for Viénot because it behaves a bit better with extreme values. For protanomaly and deuteranomaly Machado is more principled than linearly interpolating with the original image so it's probably a better choice. Compute-wise Viénot 1999 and Machado 2009 are similar (one 3x3 matrix multiplication per pixel), but Brettel 1997 is a bit more expensive (two 3x3 matrix multiplication + some ratio test). Still very cheap on modern computers though.</p>
+</li>
+<li>
+<p>Coblis V1 (ColorMatrix) should never be used. Coblis V2 may be ok for protanopia and deuteranopia (ideally after adjusting it to use sRGB instead of a generic gamma), but there is not much data to support it and the license is restrictive so I would not recommend it.</p>
+</li>
+</ul>
+<p>This is the heuristic implemented by <code>Simulator_AutoSelect</code> in <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python</a>.</p>
+<p>More discussion and comparisons can be found in the <a class="citation" href="#simon_liedtke_using_2016">(Simon-Liedtke &amp; Farup, 2016)</a> paper. It includes an evaluation of the <a class="citation" href="#kotera_optimal_2012">(Kotera, 2012)</a> method, which I did not include as I haven't found open source implementations, and it performs worse than Viénot and Brettel in that study.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Show-me-some-images!">
+<a class="anchor" href="#Show-me-some-images!" aria-hidden="true"><span class="octicon octicon-link"></span></a>Show me some images!<a class="anchor-link" href="#Show-me-some-images!"> </a>
+</h1>
+<p>Let's get an idea of the output of each method. The input image covers the full RGB range. These results are for full dichromacy, so people with a mild CVD will likely see significant differences between the original and the simulated images for all models.</p>
+<p>The images were generated using the implementation of each method in <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python</a>, with the exception of Coblis V1 and V2 which respectively come from <a href="https://github.com/skratchdot/color-matrix">skratchdot/color-matrix</a> and <a href="https://github.com/jkulesza/peacock">Peacock</a>.</p>
+<p>Overall it confirms that Coblis V1 (the ColorMatrix) is very broken. The other algorithms have some differences but fortunately still generally agree for protanopia and deuteranopia. For tritanopia Brettel 1997 is significantly different and should be more accurate as the other models were not designed to be compatible with tritanopia.</p>
+<h2 id="For-protanopia">
+<a class="anchor" href="#For-protanopia" aria-hidden="true"><span class="octicon octicon-link"></span></a>For protanopia<a class="anchor-link" href="#For-protanopia"> </a>
+</h2>
+<p><!-- Image tags have to be unindented for nbdev to catch them :-( --></p>
+<table>
+    <tr>
+<th>Original</th>
+<th>Machado 2009</th>
+<th>Viénot 1999</th>
+</tr>
+    <tr>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan.png" alt="">
+    
+    
+</figure>
+</td>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_protan_machado2009.png" alt="">
+    
+    
+</figure>
+</td>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_protan_vienot1999.png" alt="">
+    
+    
+</figure>
+</td>
+</tr>
+     <tr>
+<th>Brettel 1997</th>
+<th>Coblis V1</th>
+<th>Coblis V2</th>
+</tr>
+    <tr>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_protan_brettel1997.png" alt="">
+    
+    
+</figure>
+</td>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_protan_coblisv1.png" alt="">
+    
+    
+</figure>
+</td>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_protan_coblisv2.png" alt="">
+    
+    
+</figure>
+</td>
+</tr>
+</table>
+<h2 id="For-deuteranopia">
+<a class="anchor" href="#For-deuteranopia" aria-hidden="true"><span class="octicon octicon-link"></span></a>For deuteranopia<a class="anchor-link" href="#For-deuteranopia"> </a>
+</h2>
+<table>
+    <tr>
+<th>Original</th>
+<th>Machado 2009</th>
+<th>Viénot 1999</th>
+</tr>
+    <tr>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan.png" alt="">
+    
+    
+</figure>
+</td>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_deutan_machado2009.png" alt="">
+    
+    
+</figure>
+</td>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_deutan_vienot1999.png" alt="">
+    
+    
+</figure>
+</td>
+</tr>
+     <tr>
+<th>Brettel 1997</th>
+<th>Coblis V1</th>
+<th>Coblis V2</th>
+</tr>
+    <tr>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_deutan_brettel1997.png" alt="">
+    
+    
+</figure>
+</td>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_deutan_coblisv1.png" alt="">
+    
+    
+</figure>
+</td>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_deutan_coblisv2.png" alt="">
+    
+    
+</figure>
+</td>
+</tr>
+</table>
+<h2 id="For-tritanopia">
+<a class="anchor" href="#For-tritanopia" aria-hidden="true"><span class="octicon octicon-link"></span></a>For tritanopia<a class="anchor-link" href="#For-tritanopia"> </a>
+</h2>
+<table>
+    <tr>
+<th>Original</th>
+<th>Machado 2009</th>
+<th>Viénot 1999</th>
+</tr>
+    <tr>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan.png" alt="">
+    
+    
+</figure>
+</td>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_tritan_machado2009.png" alt="">
+    
+    
+</figure>
+</td>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_tritan_vienot1999.png" alt="">
+    
+    
+</figure>
+</td>
+</tr>
+     <tr>
+<th>Brettel 1997</th>
+<th>Coblis V1</th>
+<th>Coblis V2</th>
+</tr>
+    <tr>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_tritan_brettel1997.png" alt="">
+    
+    
+</figure>
+</td>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_tritan_coblisv1.png" alt="">
+    
+    
+</figure>
+</td>
+<td>
+<figure>
+  
+    <img class="docimage" src="/images/copied_from_nb/simulation_images/rgbspan_tritan_coblisv2.png" alt="">
+    
+    
+</figure>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-accurate-are-these-simulations?">
+<a class="anchor" href="#How-accurate-are-these-simulations?" aria-hidden="true"><span class="octicon octicon-link"></span></a>How accurate are these simulations?<a class="anchor-link" href="#How-accurate-are-these-simulations?"> </a>
+</h1>
+<p>Brettel 1997, Viénot 1999 and Machado 2009 have a fairly solid theoretical background, but they still remain approximate mathematical models of the complex human perception of colors. So how good are they at simulating how a person with CVD perceives colors? Several studies have attempted to validate these experimentally. A first step is to ask a person with CVD to validate whether the original image and the simulated image look similar, which is what Brettel 1997 did. More elaborate studies compared how people with CVD and people with normal vision perform on color tests or color-related tasks. On the original images people with normal vision are expected to perform better, but when given the simulated images they should perform similarly as the people with the corresponding CVD, if the simulate was accurate. <a class="citation" href="#simon_liedtke_using_2016">(Simon-Liedtke &amp; Farup, 2016)</a> show that the Brettel model is pretty good at least for deuteranopes, and <a class="citation" href="#machado_physiologically_based_2009">(Machado, Oliveira, &amp; Fernandes, 2009)</a> showed pretty good results for protanopes and deuteranopes for their method, which is similar to the Brettel one for full dichromacy.</p>
+<p>There are still some serious limits though, so all these models have to be taken with a grain of salt:</p>
+<ul>
+<li>
+<p>So far we've mostly discussed dichromacy, where one kind of cone is entirely missing. But most people actually have anomalous trichromacy, where the deficient cones are still either present but with less density, or shifted towards another cone, limiting its discriminative power. For those the dichromat models will look too extreme as they can perceive more colors and see a difference between the original and simulated images.</p>
+</li>
+<li>
+<p>All these models are based on <em>average</em> observers. But there are great individual variations. For example Brettel 1997 noted that some experiments on 4 deuteranopes showed that two had a spectral peak of 558 nm for two of them, and 563nm for the other two. So ideally the parameters of the models would need to get adjusted for each person.</p>
+</li>
+<li>
+<p>These models assumed that only the lowest level of color perception is affected, and ignore the plasticity of the brain that can potentially adapt and change the color perception at higher levels. These simulations do not model anything like that.</p>
+</li>
+<li>
+<p>The validation experiments are generally made on very small population, rarely more than 10 people. And tritanopes are basically never evaluated since they are very rare and hard to find.</p>
+</li>
+<li>
+<p>Most people will look at these simulations on an uncalibrated computer screen in a room with some kind of background illumination. Without a proper calibration of the monitor the stimuli that corresponds to each sRGB value will be inaccurate, and the background illumination may be far from the expected D65 (normal outdoor). Also the brightness, contrast and color balance settings of the monitor can significantly change the color appearance.</p>
+</li>
+<li>
+<p><a class="citation" href="#meyer_color_defective_1988">(Meyer &amp; Greenberg, 1988)</a> noted that the size of the field of view can affect the severity of an individual's deficiency. They refer to <a class="citation" href="#pokorny_new_1982">(Pokorny &amp; Smith, 1982)</a> that observed how the severity can decrease as the field of view increases. This explains why colors are harder to identify for a person with CVD on small objects like LEDs, but easier on large bright objects. Ideally the simulations should take that into account and preserve more of the original color on large objects.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Conclusion">
+<a class="anchor" href="#Conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion<a class="anchor-link" href="#Conclusion"> </a>
+</h1>
+<p>So the good news is that there are quite a few solutions to simulate CVDs. The bad news is there is still a lot of outdated code out, and even for well-intentioned developers it's quite hard to evaluate whether the output of their simulation is correct or not, so I hope that this article can help.</p>
+<p>A second issue is that the methods that are easy to implement are generic and were developed from experimental data collected on average observers (and a long time ago!). We're still lacking a great practical way to model individual color vision deficiency profiles and feed that into a simulator. The work of <a class="citation" href="#flatla_so_2012">(Flatla &amp; Gutwin, 2012)</a> and <a class="citation" href="#macalpine_real_time_2016">(MacAlpine &amp; Flatla, 2016)</a> goes in that direction, but as far as I know there is no open source code for it. If you want to evaluate what kind of blindness and what severity you have according to the LMS models discussed in this article I've generated a number of Ishihara-like plates in the Appendix FIXME.</p>
+<p>There are also other research work that have remained more confidential so far like <a class="citation" href="#capilla_corresponding_pair_2004">(Capilla, Díez-Ajenjo, Luque, &amp; Malo, 2004)</a>. While interesting, the main problem here again is that no large-scale validation was performed, so it's hard to know which one is better. That group also did share <a href="http://rua.ua.es/dspace/handle/10045/23471">some Matlab code</a>, but it hasn't been maintained and can't be run without a Matlab runtime from 2011.</p>
+<p>This review did not dive into <em>how</em> these methods actually work, we'll do that in an upcoming post.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bibliography">
+<a class="anchor" href="#Bibliography" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bibliography<a class="anchor-link" href="#Bibliography"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<ol class="bibliography">
+<li><span id="meyer_color_defective_1988">Meyer, G. W., &amp; Greenberg, D. P. (1988). Color-defective vision and computer graphics displays. <i>IEEE Computer Graphics and Applications</i>, <i>8</i>(5), 28–40.</span></li>
+<li><span id="vienot_digital_1999">Viénot, F., Brettel, H., &amp; Mollon, J. D. (1999). Digital video colourmaps for checking the legibility of displays by dichromats. <i>Color Research &amp; Application</i>, <i>24</i>(4), 243–252.</span></li>
+<li><span id="brettel_computerized_1997">Brettel, H., &amp; Mollon, J. D. (1997). <i>Computerized simulation of color appearance for dichromats</i>. <i>14</i>(10), 2647–2655.</span></li>
+<li><span id="fairchild2013color">Fairchild, M. D. (2013). <i>Color appearance models</i>. John Wiley &amp; Sons.</span></li>
+<li><span id="machado_physiologically_based_2009">Machado, G. M., Oliveira, M. M., &amp; Fernandes, L. A. F. (2009). A physiologically-based model for simulation of color vision deficiency. <i>IEEE Transactions on Visualization and Computer Graphics</i>, <i>15</i>(6), 1291–1298. https://doi.org/10.1109/TVCG.2009.113</span></li>
+<li><span id="flatla_so_2012">Flatla, D. R., &amp; Gutwin, C. (2012). "So that’s what you see": building understanding with personalized simulations of colour vision deficiency. <i>Proceedings of the 14th International ACM SIGACCESS Conference on Computers and Accessibility</i>, 167–174. New York, NY, USA: Association for Computing Machinery. https://doi.org/10.1145/2384916.2384946</span></li>
+<li><span id="fidaner_analysis_2005">Fidaner, O., Lin, P., &amp; Ozguven, N. (2005). <i>Analysis of Color Blindness</i>.</span></li>
+<li><span id="simon_liedtke_using_2016">Simon-Liedtke, J. T., &amp; Farup, I. (2016). Using a Behavioral Match-to-Sample Method to Evaluate Color Vision Deficiency Simulation Methods. <i>Journal of Imaging Science and Technology</i>, <i>60</i>(5), 504091–504099. https://doi.org/10.2352/J.ImagingSci.Technol.2016.60.5.050409</span></li>
+<li><span id="kotera_optimal_2012">Kotera, H. (2012). Optimal daltonization by spectral shift for dichromatic vision. <i>Color and Imaging Conference</i>, <i>2012</i>, 302–308. Society for Imaging Science and Technology.</span></li>
+<li><span id="pokorny_new_1982">Pokorny, J., &amp; Smith, V. C. (1982). New observations concerning red–green color defects. <i>Color Research &amp; Application</i>, <i>7</i>(2), 159–164.</span></li>
+<li><span id="macalpine_real_time_2016">MacAlpine, R., &amp; Flatla, D. R. (2016). <i>Real-Time Mobile Personalized Simulations of Impaired Colour Vision</i>. 9.</span></li>
+<li><span id="capilla_corresponding_pair_2004">Capilla, P., Díez-Ajenjo, M. A., Luque, M. J., &amp; Malo, J. (2004). Corresponding-pair procedure: a new approach to simulation of dichromatic color perception. <i>Journal of the Optical Society of America. A, Optics, Image Science, and Vision</i>, <i>21</i>(2), 176–186. https://doi.org/10.1364/josaa.21.000176</span></li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="DaltonLens/daltonlens.org"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/opensource-cvd-simulation/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Software tools and technical posts to make the life of colorblind people easier. Includes color filters and color blindness simulation.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/DaltonLens" title="DaltonLens"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/nburrus" title="nburrus"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

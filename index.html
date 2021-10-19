@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="DaltonLens" />
 <meta property="og:image" content="http://daltonlens.org/images/logo.png" />
 <script type="application/ld+json">
-{"description":"Software tools and technical posts to make the life of colorblind people easier. Includes color filters and color blindness simulation.","url":"http://daltonlens.org/","@type":"WebSite","headline":"DaltonLens","image":"http://daltonlens.org/images/logo.png","name":"DaltonLens","@context":"https://schema.org"}</script>
+{"url":"http://daltonlens.org/","headline":"DaltonLens","image":"http://daltonlens.org/images/logo.png","@type":"WebSite","name":"DaltonLens","description":"Software tools and technical posts to make the life of colorblind people easier. Includes color filters and color blindness simulation.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://daltonlens.org/feed.xml" title="DaltonLens" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -62,18 +62,24 @@ window.onload = wrap_img;
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+        <div class="trigger"><a class="page-link" href="/search/">Search</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><p>This site is built with <a href="https://github.com/fastai/fastpages">fastpages</a>, An easy to use blogging platform with extra features for Jupyter Notebooks.</p>
+        <div class="home"><p>DaltonLens is a project aiming at simplifying the life of color blind people with utility software and technical blog posts.</p>
 
-<p><img src="/images/diagram.png" alt="" title="https://github.com/fastai/fastpages" /></p>
+<p style="text-align: center;"><img src="/images/daltonize-example.png" alt="" title="https://github.com/DaltonLens/DaltonLens" /></p>
 
-<p><a href="https://github.com/fastai/fastpages">fastpages</a> automates the process of creating blog posts via GitHub Actions, so you don’t have to fuss with conversion scripts.  A full list of features can be found on <a href="https://github.com/fastai/fastpages">GitHub</a>.</p>
+<p><a href="https://github.com/DaltonLens/DaltonLens">DaltonLens for Desktop</a> is a utility for macOS, Windows and Linux providing various color filters and tools to read color-coded charts and plots.</p>
 
-<p>You can edit the <code class="language-plaintext highlighter-rouge">index.html</code> file to change this content.</p>
+<p><a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python</a> is a
+toolbox for research and development on color vision deficiency algorithms. It
+includes a color blindness simulator and tools to generate Ishihara-like plates
+and visualize confusion lines.</p>
+
+<p>Both are developed by <a href="http://nicolas.burrus.name">Nicolas Burrus</a> as a hobby
+project to make his mild-protan life easier :-)</p>
 
 <h1 id="posts">Posts</h1>
 
@@ -96,15 +102,10 @@ window.onload = wrap_img;
    <!-- Assemble final sorted posts array -->
   
   <ul class="post-list"><li><h3>
-    <a class="post-link" href="/jupyter/2020/02/20/test.html">
-    Fastpages Notebook Blog Post
+    <a class="post-link" href="/opensource-cvd-simulation/">
+    Review of Open Source Color Blindness Simulations
     </a>
-</h3><p class="post-meta-description">A tutorial of fastpages for Jupyter notebooks.</p><p class="post-meta">Feb 20, 2020</p>
-</li><li><h3>
-    <a class="post-link" href="/markdown/2020/01/14/test-markdown-post.html">
-    An Example Markdown Post
-    </a>
-</h3><p class="post-meta-description">A minimal example of using markdown with fastpages.</p><p class="post-meta">Jan 14, 2020</p>
+</h3><p class="post-meta-description">Let's stop copy/pasting code without understanding where it comes from :-)</p><p class="post-meta">Oct 19, 2021</p>
 </li></ul>
 
     </div>
