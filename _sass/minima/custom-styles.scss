@@ -13,8 +13,13 @@
 .post-content p, .post-content li {
     font-size: 16px;
     color: #515151;
+    text-align: justify;
  }
  
- .post figure {
+.post figure {
     margin: 0em;
+}
+
+.page-content p {
+    text-align: justify;
 }
