@@ -486,4 +486,6 @@ p code { font-size: 19px; }
 
 .post-content p, .post-content li { font-size: 16px; color: #515151; }
 
+.post figure { margin: 0em; }
+
 /*# sourceMappingURL=style.css.map */
