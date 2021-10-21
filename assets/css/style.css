@@ -486,6 +486,8 @@ p code { font-size: 19px; }
 
 .post-content p, .post-content li { font-size: 16px; color: #515151; text-align: justify; }
 
+p code { font-size: 16px; }
+
 .post figure { margin: 0em; }
 
 .page-content p { text-align: justify; }
