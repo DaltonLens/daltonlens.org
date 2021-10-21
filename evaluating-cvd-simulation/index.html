@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Evaluating Color Blindness Simulations | DaltonLens</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Evaluating Color Blindness Simulations" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="How well does each model match my perception? What severity do I have?" />
+<meta property="og:description" content="How well does each model match my perception? What severity do I have?" />
+<link rel="canonical" href="http://daltonlens.org/evaluating-cvd-simulation/" />
+<meta property="og:url" content="http://daltonlens.org/evaluating-cvd-simulation/" />
+<meta property="og:site_name" content="DaltonLens" />
+<meta property="og:image" content="http://daltonlens.org/images/chart-preview.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-30T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"http://daltonlens.org/evaluating-cvd-simulation/","headline":"Evaluating Color Blindness Simulations","dateModified":"2021-10-30T00:00:00-05:00","datePublished":"2021-10-30T00:00:00-05:00","image":"http://daltonlens.org/images/chart-preview.png","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://daltonlens.org/evaluating-cvd-simulation/"},"description":"How well does each model match my perception? What severity do I have?","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://daltonlens.org/feed.xml" title="DaltonLens" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">DaltonLens</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/search/">Search</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Evaluating Color Blindness Simulations</h1><p class="page-description">How well does each model match my perception? What severity do I have?</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-30T00:00:00-05:00" itemprop="datePublished">
+        Oct 30, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/DaltonLens/daltonlens.org/tree/master/_notebooks/2021-10-30-Evaluating-ColorBlindness-Simulations.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/DaltonLens/daltonlens.org/master?filepath=_notebooks%2F2021-10-30-Evaluating-ColorBlindness-Simulations.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/DaltonLens/daltonlens.org/blob/master/_notebooks/2021-10-30-Evaluating-ColorBlindness-Simulations.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Generated-Ishihara-like-plates-to-evaluate-the-kind-and-severity-of-CVD">Generated Ishihara-like plates to evaluate the kind and severity of CVD </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-10-30-Evaluating-ColorBlindness-Simulations.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Generated-Ishihara-like-plates-to-evaluate-the-kind-and-severity-of-CVD">
+<a class="anchor" href="#Generated-Ishihara-like-plates-to-evaluate-the-kind-and-severity-of-CVD" aria-hidden="true"><span class="octicon octicon-link"></span></a>Generated Ishihara-like plates to evaluate the kind and severity of CVD<a class="anchor-link" href="#Generated-Ishihara-like-plates-to-evaluate-the-kind-and-severity-of-CVD"> </a>
+</h2>
+<p>It is possible to generate Ishihara-like plates for a given deficiency and severity factor. The main idea is to pick a confusion segment in the LMS space, and generate an Ishihara-like image by using one end of the segment as the background color and the other end as the foreground color (a single-digit number). On top of that lower degrees of severity can be tested by making the segment shorter, effectively reducing the distance between the colors along the confusion line. This makes it harder and harder to differentiate for someone with anomalous trichromacy.</p>
+<p>By looking at these generated plates it becomes possible to self-evaluate the kind of deficiency by checking in which plate the numbers are the harder to read. For example I can read all the numbers in the tritan plate, most numbers in the deutan plate (but not all), and barely any in the protan plate. This confirms that I am a protan.</p>
+<p>Then the severity can be evaluated by looking at plates generated with decreasing severity and checking at which value it becomes impossible to see any number. For me that's around 0.8 for the protan plate.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># This cell defines all our imports and a few utilities</span>
+<span class="kn">import</span> <span class="nn">daltonlens.generate</span> <span class="k">as</span> <span class="nn">generate</span>
+<span class="kn">import</span> <span class="nn">daltonlens.simulate</span> <span class="k">as</span> <span class="nn">simulate</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
+
+<span class="c1"># Utility for plotly imshow</span>
+<span class="n">hide_image_axes</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">yaxis_visible</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">yaxis_showticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xaxis_visible</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xaxis_showticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">showAnimatedImages</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">deficiency</span><span class="p">):</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">severity</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.19</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">):</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">generate</span><span class="o">.</span><span class="n">ishihara_plate</span><span class="p">(</span><span class="n">deficiency</span><span class="p">,</span> <span class="n">severity</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Severity </span><span class="si">{</span><span class="n">severity</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">images</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">im</span><span class="p">)</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">704</span><span class="o">*</span><span class="mf">1.4</span><span class="p">,</span> <span class="n">animation_frame</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">hide_image_axes</span><span class="p">)</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">showAnimatedImages</span><span class="p">(</span><span class="s2">"Protanopia / protanomaly"</span><span class="p">,</span> <span class="n">simulate</span><span class="o">.</span><span class="n">Deficiency</span><span class="o">.</span><span class="n">PROTAN</span><span class="p">)</span>
+<span class="n">showAnimatedImages</span><span class="p">(</span><span class="s2">"Deuteranopia / deuteranomaly"</span><span class="p">,</span> <span class="n">simulate</span><span class="o">.</span><span class="n">Deficiency</span><span class="o">.</span><span class="n">DEUTAN</span><span class="p">)</span>
+<span class="n">showAnimatedImages</span><span class="p">(</span><span class="s2">"Tritanopia / tratanomaly"</span><span class="p">,</span> <span class="n">simulate</span><span class="o">.</span><span class="n">Deficiency</span><span class="o">.</span><span class="n">TRITAN</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p></p>
+<ol class="bibliography"></ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="DaltonLens/daltonlens.org"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/evaluating-cvd-simulation/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Software tools and technical posts to make the life of colorblind people easier. Includes color filters and color blindness simulation.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/DaltonLens" title="DaltonLens"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/nburrus" title="nburrus"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
