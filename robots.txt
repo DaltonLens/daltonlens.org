@@ -1,1 +1,1 @@
-Sitemap: http://daltonlens.org/sitemap.xml
+Sitemap: https://daltonlens.org/sitemap.xml

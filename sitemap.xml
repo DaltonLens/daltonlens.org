@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://daltonlens.org/opensource-cvd-simulation/</loc>
+<loc>https://daltonlens.org/opensource-cvd-simulation/</loc>
 <lastmod>2021-10-19T00:00:00-05:00</lastmod>
 </url>
 <url>
-<loc>http://daltonlens.org/understanding-cvd-simulation/</loc>
+<loc>https://daltonlens.org/understanding-cvd-simulation/</loc>
 <lastmod>2021-10-21T00:00:00-05:00</lastmod>
 </url>
 <url>
-<loc>http://daltonlens.org/evaluating-cvd-simulation/</loc>
+<loc>https://daltonlens.org/evaluating-cvd-simulation/</loc>
 <lastmod>2021-10-25T00:00:00-05:00</lastmod>
 </url>
 <url>
-<loc>http://daltonlens.org/</loc>
+<loc>https://daltonlens.org/</loc>
 </url>
 <url>
-<loc>http://daltonlens.org/search/</loc>
+<loc>https://daltonlens.org/search/</loc>
 </url>
 </urlset>
