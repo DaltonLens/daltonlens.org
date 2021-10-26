@@ -8,8 +8,8 @@
 <meta name="generator" content="Jekyll v4.1.1" />
 <meta property="og:title" content="Review of Open Source Color Blindness Simulations" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Beware of outdated methods!" />
-<meta property="og:description" content="Beware of outdated methods!" />
+<meta name="description" content="There are lots of available programs for color blindness simulation, but many are actually very inaccurate. Let’s find out what methods we can trust and what code can be safely copy/pasted :)" />
+<meta property="og:description" content="There are lots of available programs for color blindness simulation, but many are actually very inaccurate. Let’s find out what methods we can trust and what code can be safely copy/pasted :)" />
 <link rel="canonical" href="http://daltonlens.org/opensource-cvd-simulation/" />
 <meta property="og:url" content="http://daltonlens.org/opensource-cvd-simulation/" />
 <meta property="og:site_name" content="DaltonLens" />
@@ -17,7 +17,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-10-19T00:00:00-05:00" />
 <script type="application/ld+json">
-{"url":"http://daltonlens.org/opensource-cvd-simulation/","headline":"Review of Open Source Color Blindness Simulations","dateModified":"2021-10-19T00:00:00-05:00","datePublished":"2021-10-19T00:00:00-05:00","image":"http://daltonlens.org/images/chart-preview.png","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://daltonlens.org/opensource-cvd-simulation/"},"description":"Beware of outdated methods!","@context":"https://schema.org"}</script>
+{"url":"http://daltonlens.org/opensource-cvd-simulation/","headline":"Review of Open Source Color Blindness Simulations","dateModified":"2021-10-19T00:00:00-05:00","datePublished":"2021-10-19T00:00:00-05:00","image":"http://daltonlens.org/images/chart-preview.png","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://daltonlens.org/opensource-cvd-simulation/"},"description":"There are lots of available programs for color blindness simulation, but many are actually very inaccurate. Let’s find out what methods we can trust and what code can be safely copy/pasted :)","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://daltonlens.org/feed.xml" title="DaltonLens" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -103,13 +103,13 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Review of Open Source Color Blindness Simulations</h1><p class="page-description">Beware of outdated methods!</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-19T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Review of Open Source Color Blindness Simulations</h1><p class="page-description">There are lots of available programs for color blindness simulation, but many are actually very inaccurate. Let's find out what methods we can trust and what code can be safely copy/pasted :)</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-19T00:00:00-05:00" itemprop="datePublished">
         Oct 19, 2021
       </time>
        • <span class="read-time" title="Estimated read time">
     
     
-      21 min read
+      23 min read
     
 </span></p>
 
@@ -157,6 +157,7 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#So-which-one-should-we-use?">So which one should we use? </a></li>
+<li class="toc-entry toc-h1"><a href="#I-just-want-to-copy-some-code!">I just want to copy some code! </a></li>
 <li class="toc-entry toc-h1"><a href="#Show-me-some-images!">Show me some images! </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#For-protanopia">For protanopia </a></li>
@@ -236,7 +237,7 @@ window.onload = wrap_img;
 <h2 id="Making-sense-of-the-available-models-and-programs">
 <a class="anchor" href="#Making-sense-of-the-available-models-and-programs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Making sense of the available models and programs<a class="anchor-link" href="#Making-sense-of-the-available-models-and-programs"> </a>
 </h2>
-<p>There are many methods to simulate color blindness, and we can easily find lots of open source programs to do so. However color perception theory is complex and most developers (like me!) end up copying existing algorithms without having a solid understanding of where they come from and which one is best. It is also difficult to evaluate the accuracy of the simulations, so very bad simulations can still appear reasonable to an untrained observer.</p>
+<p>There are many methods to simulate color blindness, and we can easily find lots of open source programs to do so. However color perception theory is complex and most well-intentioned developers (like me!) end up copying existing algorithms without having a solid understanding of where they come from and which ones are best. It is also difficult to evaluate the accuracy of the simulations, so very bad simulations can still appear reasonable to an untrained observer.</p>
 <p>While developing <a href="daltonlens.org">DaltonLens</a> I got frustrated by this as I was trying to decide which method I should implement. And being a mild-protan myself, I was often not very convinced by the results of existing methods as they tended to make the simulated images way too exaggerated. But for the first version I had little time and copy/pasted some code for the daltonize filters, which turned out to be quite wrong.</p>
 <p>So I've decided to dig further into the history of the available algorithms and try to understand where they come from and how much we can trust them.</p>
 
@@ -303,9 +304,11 @@ The author actually took down that page since then, but it's hard to stop the sp
 <li>
 <a href="https://github.com/jkulesza/peacock">Peacock (Python &amp; C++)</a>. HCIRN Color Blind Simulation function.</li>
 <li>
-<a href="https://github.com/oftheheadland/Colorblindly">Colorblindly (chrome extension)</a>. Uses the ColorMatrix :-(</li>
+<a href="https://github.com/oftheheadland/Colorblindly">Colorblindly (chrome extension)</a>. Uses the ColorMatrix.</li>
 <li>
-<a href="https://github.dev/dtschump/gmic">G'MIC</a>. Uses the ColorMatrix :-(</li>
+<a href="https://github.dev/dtschump/gmic">G'MIC</a>. Uses the ColorMatrix.</li>
+<li>
+<a href="https://gist.github.com/Lokno/df7c3bfdc9ad32558bb7">Lokno GIST</a>. Uses the ColorMatrix.</li>
 </ul>
 
 </div>
@@ -317,17 +320,21 @@ The author actually took down that page since then, but it's hard to stop the sp
 <h2 id="Brettel-&amp;-Mollon-1997">
 <a class="anchor" href="#Brettel-&amp;-Mollon-1997" aria-hidden="true"><span class="octicon octicon-link"></span></a>Brettel &amp; Mollon 1997<a class="anchor-link" href="#Brettel-&amp;-Mollon-1997"> </a>
 </h2>
-<p>A more modern algorithm for dichromacy simulation was developed by <a class="citation" href="#brettel_computerized_1997">(Brettel &amp; Mollon, 1997)</a>. Their paper has become a reference in the research community. The most famous implementation is the one of <a href="www.vischeck.com">www.vischeck.com</a> in Java. It also had an online version, but the website is now broken. Vischeck was used to generate the examples in the reference color science book <a class="citation" href="#fairchild2013color">(Fairchild, 2013)</a> and generally considered as a reference.</p>
-<p>An important note is that the research work was performed on an old (but calibrated!) CRT monitor, so implementations of this approach need to be adapted for modern LCD monitors and the sRGB standard.</p>
-<p>There are comparatively few open source implementation of this algorithm as the follow-up <a class="citation" href="#vienot_digital_1999">(Viénot, Brettel, &amp; Mollon, 1999)</a> paper from the same group proposed a simpler algorithm for protanopia and deuteranopia that is also more adapted to digital monitors. However it's worth noting that this newer approach does not work well for tritanopia, so the Brettel 1997 approach is still relevant in that case.</p>
-<p>Another popular recent work from <a class="citation" href="#machado_physiologically_based_2009">(Machado, Oliveira, &amp; Fernandes, 2009)</a> uses Brettel 1997 as their reference and are actually very similar to it for dichromacy (by design, they tuned their parameters to match it).</p>
+<p>A more modern algorithm for dichromacy simulation was developed by <a class="citation" href="#brettel_computerized_1997">(Brettel, Viénot, &amp; Mollon, 1997)</a>. Their paper has become a reference in the research community. An important note is that the research work was performed on an old (but calibrated!) CRT monitor, so implementations of this approach need to be adapted for modern monitors and the sRGB standard.</p>
+<p>The most famous implementation is the one of <a href="www.vischeck.com">www.vischeck.com</a>. The original source code was in Java, but as the Vischeck co-author Bob Dougherty says <a href="https://web.stanford.edu/~bobd/cgi-bin/software/">in his webpage</a> that code is now in GIMP as <a href="https://github.com/GNOME/gimp/blob/master/modules/display-filter-color-blind.c">a display filter</a>. It also had an online version, but the website is now broken. Vischeck is generally considered as a reference in the color science community. The only issue is that this code still uses conversion matrices obtained for CRT monitors, it should probably be adapted to adopt the sRGB standard.</p>
+<p>Otherwise there are comparatively few open source implementation of this algorithm as the follow-up <a class="citation" href="#vienot_digital_1999">(Viénot, Brettel, &amp; Mollon, 1999)</a> paper from the same group proposed a simpler algorithm for protanopia and deuteranopia that is also more adapted to digital monitors. However it's worth noting that this newer approach does not work well for tritanopia, so the Brettel 1997 approach is still relevant in that case.</p>
+<p>Another popular recent work from <a class="citation" href="#machado_physiologically_based_2009">(Machado, Oliveira, &amp; Fernandes, 2009)</a> uses Brettel 1997 as their reference and are actually quite similar to it for dichromacy (by design, they tuned their parameters to match it).</p>
 <p>Note that even if it was initially developed for full dichromacy, the approach can be adapted to simulate less severe anomalous trichromacy by either linearly interpolating between the original image and the dichromat image or by applying smaller corrections with fixed steps <a class="citation" href="#flatla_so_2012">(Flatla &amp; Gutwin, 2012)</a>. It looks reasonable in practice, but the interpolation approach was not formally evaluated.</p>
-<p>More examples of software using this approach:</p>
+<p>Besides Vischeck, here are some software using this approach:</p>
 <ul>
 <li>
-<a href="https://github.dev/GNOME/gimp/blob/422d5fec8fa4f944a922523508f7ac8b465cd059/modules/display-filter-color-blind.c#L1">GIMP (C)</a>: The GNU Image Manipulation Program has a nice implementation of Brettel 1997.</li>
+<a href="https://colororacle.org/">Color Oracle (Java, Objective C)</a>. Uses Brettel 1997 for the tritanopia mode, using the LMS color model from Vischeck/GIMP. The protanopia and deuteranopia modes use the cheaper Viénot 1999.</li>
 <li>
-<a href="https://colororacle.org/">Color Oracle (Java, Objective C)</a>. Uses Brettel 1997 for the tritanopia mode, taken from the GIMP. The protanopia and deuteranopia modes use the cheaper Viénot 1999.</li>
+<a href="https://github.com/asada0/ChromaticVisionSimulator">ChromaticVisionSimulator (GLSL shader)</a>. Mobile app for Android. Uses a linear interpolation with the original image to simulate anomalous trichromacy. It uses a proper sRGB decoding to linear RGB and the chosen LMS conversion is detailed <a href="https://github.com/asada0/ChromaticVisionSimulator/blob/master/README.md">in the README.md</a>.</li>
+<li>
+<a href="https://github.com/tnphis/gimp-dichromacy">GIMP-dichromacy (Python)</a>. Also for GIMP, but as a filter. It implements more color-space options than the Vischeck-based GIMP display filter.</li>
+<li>
+<a href="https://github.com/JuliaGraphics/Colors.jl/blob/master/src/algorithms.jl">Colors.jl (Julia)</a>.</li>
 </ul>
 
 </div>
@@ -357,9 +364,6 @@ The author actually took down that page since then, but it's hard to stop the sp
 </li>
 <li>
 <p><a href="https://github.com/tsarjak/Simulate-Correct-ColorBlindness">tsarjak/Simulate-Correct-ColorBlindness (Python)</a>. Also extends the approach to anomalous trichromacy by linearly interpolating between the original image and the dichromat image. Still uses the original RGB&lt;&gt;LMS conversion for CRT monitors.</p>
-</li>
-<li>
-<p><a href="https://github.com/asada0/ChromaticVisionSimulator">ChromaticVisionSimulator</a>. Mobile app for Android. Uses a proper sRGB-&gt;XYZ conversion. Uses a linear interpolation with the original image to simulate anomalous trichromacy.</p>
 </li>
 </ul>
 
@@ -400,15 +404,39 @@ The author actually took down that page since then, but it's hard to stop the sp
 <p>For tritanopia the Brettel 1997 approach is still the most solid and basically only valid choice. For tritanomaly I'd also recommend it with an interpolation factor with the original image, but this is more debatable.</p>
 </li>
 <li>
-<p>For protanopia and deuteranopia Viénot 1999, Brettel 1997 and Machado 2009 are solid choices, with a slight advantage for Viénot because it behaves a bit better with extreme values. For protanomaly and deuteranomaly Machado is more principled than linearly interpolating with the original image so it's probably a better choice. Compute-wise Viénot 1999 and Machado 2009 are similar (one 3x3 matrix multiplication per pixel), but Brettel 1997 is a bit more expensive (two 3x3 matrix multiplication + some ratio test). Still very cheap on modern computers though.</p>
+<p>For protanopia and deuteranopia Viénot 1999, Brettel 1997 and Machado 2009 are solid choices, with a slight advantage for Viénot because it behaves a bit better with extreme values. For protanomaly and deuteranomaly Machado is more principled than linearly interpolating with the original image so it could be a better choice. Compute-wise Viénot 1999 and Machado 2009 are similar (one 3x3 matrix multiplication per pixel), but Brettel 1997 is a bit more expensive (two 3x3 matrix multiplication + some ratio test). Still very cheap on modern computers though.</p>
 </li>
 <li>
 <p>Coblis V1 (ColorMatrix) should never be used. Coblis V2 may be ok for protanopia and deuteranopia (ideally after adjusting it to use sRGB instead of a generic gamma), but given the restrictive license and the lack of careful validation I would not recommend it.</p>
 </li>
 </ul>
-<p>This is the heuristic implemented by <code>Simulator_AutoSelect</code> in <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python</a>.</p>
 <p>More discussion and comparisons can be found in the <a class="citation" href="#simon_liedtke_using_2016">(Simon-Liedtke &amp; Farup, 2016)</a> paper. It includes an evaluation of the <a class="citation" href="#kotera_optimal_2012">(Kotera, 2012)</a> method, which I did not include as I haven't found open source implementations, and it performs worse than Viénot and Brettel in that study.</p>
-<p>Also worth reading is the evaluation of <a class="citation" href="#lillo_experimental_2014">(Lillo, Álvaro, &amp; Moreira, 2014)</a>, also concluding that Brettel 1997 is pretty accurate. They also evaluate Coblis (concluding that it is pretty inaccurate, but given the dates it was probably V1. So it does not allow us to conclude about Coblis V2.</p>
+<p>Also worth reading is the evaluation of <a class="citation" href="#lillo_experimental_2014">(Lillo, Álvaro, &amp; Moreira, 2014)</a>, also concluding that Brettel 1997 (using Vischeck's implementation) is pretty accurate. They also evaluate Coblis (concluding that it is pretty inaccurate, but given the dates it was probably V1. So it does not allow us to conclude about Coblis V2.</p>
+<p>One last thing to keep in mind in that there are many ways to implement the RGB to LMS color space conversion, so it's a little bit of a jungle there. We'll discuss that more in depth in a future post, but the good news is that in most cases the final results will still be reasonable.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="I-just-want-to-copy-some-code!">
+<a class="anchor" href="#I-just-want-to-copy-some-code!" aria-hidden="true"><span class="octicon octicon-link"></span></a>I just want to copy some code!<a class="anchor-link" href="#I-just-want-to-copy-some-code!"> </a>
+</h1>
+<p>Ok, so while writing this article I realized that we still didn't have a single place to look for a reference implementation that developers can just copy/paste/adapt. This is why I've written <a href="https://github.com/DaltonLens/libDaltonLens">libDaltonLens</a>, a minimalistic single-file library with a public domain license that tries to fix that. It's in C, with zero dependencies, and unit tested against reference implementations.</p>
+<p><a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python</a> also has unit-tested implementations of the 3 methods discussed above, but the code is targeted towards experimentation and research, so it's a bit less minimal.</p>
+<p>Otherwise I'd recommend these open source software:</p>
+<ul>
+<li>
+<p>Brettel 1997: the <a href="https://github.com/GNOME/gimp/blob/master/modules/display-filter-color-blind.c">Vischeck display filter for GIMP</a>. The RGB to LMS matrix should be updated for sRGB, but it's still ok in practice and Vischeck was the most validated software overall. Beware that the code does not include the sRGB-&gt;RGB conversion since GIMP does that before calling that code. Also note that the license is GPL.</p>
+</li>
+<li>
+<p>Viénot 1999: <a href="https://github.com/joergdietrich/daltonize">daltonize.py (Python)</a> is pretty solid too.</p>
+</li>
+<li>
+<p>Machado 2009: <a href="https://github.com/colour-science/colour">colour-science.org (Python)</a>. Pretty easy to implement overall with the precomputed matrices.</p>
+</li>
+</ul>
 
 </div>
 </div>
@@ -689,8 +717,7 @@ The author actually took down that page since then, but it's hard to stop the sp
 <ol class="bibliography">
 <li><span id="meyer_color_defective_1988">Meyer, G. W., &amp; Greenberg, D. P. (1988). Color-defective vision and computer graphics displays. <i>IEEE Computer Graphics and Applications</i>, <i>8</i>(5), 28–40.</span></li>
 <li><span id="vienot_digital_1999">Viénot, F., Brettel, H., &amp; Mollon, J. D. (1999). Digital video colourmaps for checking the legibility of displays by dichromats. <i>Color Research &amp; Application</i>, <i>24</i>(4), 243–252.</span></li>
-<li><span id="brettel_computerized_1997">Brettel, H., &amp; Mollon, J. D. (1997). <i>Computerized simulation of color appearance for dichromats</i>. <i>14</i>(10), 2647–2655.</span></li>
-<li><span id="fairchild2013color">Fairchild, M. D. (2013). <i>Color appearance models</i>. John Wiley &amp; Sons.</span></li>
+<li><span id="brettel_computerized_1997">Brettel, H., Viénot, F., &amp; Mollon, J. D. (1997). Computerized simulation of color appearance for dichromats. <i>Journal of the Optical Society of America. A, Optics, Image Science, and Vision</i>, <i>14</i>(10), 2647–2655. https://doi.org/10.1364/josaa.14.002647</span></li>
 <li><span id="machado_physiologically_based_2009">Machado, G. M., Oliveira, M. M., &amp; Fernandes, L. A. F. (2009). A physiologically-based model for simulation of color vision deficiency. <i>IEEE Transactions on Visualization and Computer Graphics</i>, <i>15</i>(6), 1291–1298. https://doi.org/10.1109/TVCG.2009.113</span></li>
 <li><span id="flatla_so_2012">Flatla, D. R., &amp; Gutwin, C. (2012). "So that’s what you see": building understanding with personalized simulations of colour vision deficiency. <i>Proceedings of the 14th International ACM SIGACCESS Conference on Computers and Accessibility</i>, 167–174. New York, NY, USA: Association for Computing Machinery. https://doi.org/10.1145/2384916.2384946</span></li>
 <li><span id="fidaner_analysis_2005">Fidaner, O., Lin, P., &amp; Ozguven, N. (2005). <i>Analysis of Color Blindness</i>.</span></li>
