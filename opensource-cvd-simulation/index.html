@@ -109,7 +109,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      23 min read
+      24 min read
     
 </span></p>
 
@@ -390,12 +390,25 @@ So, to summarize:</p>
 <a class="anchor" href="#Machado-2009" aria-hidden="true"><span class="octicon octicon-link"></span></a>Machado 2009<a class="anchor-link" href="#Machado-2009"> </a>
 </h2>
 <p>Even more recently <a class="citation" href="#machado_physiologically_based_2009">(Machado, Oliveira, &amp; Fernandes, 2009)</a> proposed an approach that supports both dichromacy and anomalous trichromacy in a principled way. They also made the nice and very welcome effort to publish easy-to-use matrices on <a href="https://www.inf.ufrgs.br/~oliveira/pubs_files/CVD_Simulation/CVD_Simulation.html">their website</a> and it is becoming more and more popular.</p>
-<p>As mentioned earlier it is actually very similar to Brettel 1997 for dichromacy as they tuned their scaling parameters to match it. However it does not work very well for tritanopia as their model is to shift the peak response of the faulty kind of cone cells, and how it should be shifted is unclear for tritanopes. They also did not do any experimental validation with tritanopes.</p>
-<p>For anomalous trichromacy the results are reasonably similar to the variant of Brettel 1997 that interpolates with the original image, but since the Machado approach is more principled it may be preferred.</p>
+<p>As mentioned earlier it is actually very similar to Brettel 1997 for dichromacy as they tuned their scaling parameters to match it. However it does not work very well for tritanopia as their model is to shift the peak response of the faulty kind of cone cells, and how it should be shifted is unclear for tritanopes. They also did not do any experimental validation with tritanopes, and the paper says:</p>
+<blockquote>
+<p>Since there are no strong biological explanations yet to justify the causes of tritanopia and tritanomaly, we simulate tritanomaly based on the shift paradigm only as an approximation to the actual phenomenon and restrain our model from trying to model tritanopia.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For protanomaly and deuteranomaly the results are reasonably similar to the variant of Brettel 1997 that interpolates with the original image, but since the Machado approach is more principled in that case it may be preferred.</p>
 <p>Here are some examples of software using this approach:</p>
 <ul>
 <li>
 <p><a href="https://github.com/colour-science/colour">colour-science.org (Python)</a>. Also has code to re-compute the predefined matrices. Overall a very comprehensive reference for anything color-related.</p>
+</li>
+<li>
+<p><a href="https://github.com/njsmith/colorspacious">colorspacious (Python)</a>. Uses the precomputed matrices.</p>
 </li>
 <li>
 <p><a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1003700#c33">Chromium</a> and <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1655053">Mozilla</a> used to rely on the ColorMatrix (Coblis v1) algorithm but fortunately now rely on the Machado approach.</p>
