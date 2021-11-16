@@ -484,14 +484,18 @@ pre code { font-size: 15px !important; }
 
 p code { font-size: 19px; }
 
-.post-content p, .post-content li { font-size: 16px; color: #515151; text-align: justify; }
+.home p, .home li, .post-content p, .post-content li { font-size: 16px; color: #515151; text-align: justify; }
 
 p code { font-size: 16px; }
 
 .post figure { margin: 0em; }
 
-.page-content p { text-align: justify; }
+.home p, .page-content p { text-align: justify; }
 
 .flash { margin-bottom: 20px; }
+
+.home h3 a { display: block; font-size: 1.5rem; }
+
+li h3, li h4 { margin-top: 1.5rem !important; }
 
 /*# sourceMappingURL=style.css.map */

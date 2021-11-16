@@ -38,6 +38,17 @@
   
 
   
+      ,"page1": {
+          "title": "About",
+          "content": "DaltonLens is developed by Nicolas Burrus as a hobby project to make his protan life easier :-) . This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
+          "url": "https://daltonlens.org/about/",
+          "relUrl": "/about/",
+          "date": ""
+      }
+      
+  
+
+  
 
   
   
@@ -54,7 +65,7 @@
   
 
   
-      ,"page7": {
+      ,"page8": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://daltonlens.org/robots.txt",
