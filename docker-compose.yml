@@ -41,4 +41,4 @@ services:
     volumes:
       - .:/data/
     command: >
-      bash -c "chmod -R u+rw . && jekyll serve --host 0.0.0.0 --trace --strict_front_matter"
+      bash -c "chmod -R u+rw . && jekyll serve ${JEKYLL_EXTRA_OPTIONS:-} --host 0.0.0.0 --trace --strict_front_matter"

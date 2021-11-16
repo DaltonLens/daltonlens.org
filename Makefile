@@ -6,6 +6,10 @@ server: .FORCE
 	docker-compose down --remove-orphans || true;
 	docker-compose up
 
+server-incremental: .FORCE	
+	docker-compose down --remove-orphans || true;
+	export JEKYLL_EXTRA_OPTIONS="--incremental"; docker-compose up
+
 # start (or restart) the services in detached mode
 server-detached: .FORCE
 	docker-compose down || true;
