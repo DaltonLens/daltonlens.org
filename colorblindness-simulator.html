@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Color Blindness Simulator | DaltonLens</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Color Blindness Simulator" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Software tools and technical posts to make the life of colorblind people easier. Includes color filters and color blindness simulation." />
+<meta property="og:description" content="Software tools and technical posts to make the life of colorblind people easier. Includes color filters and color blindness simulation." />
+<link rel="canonical" href="https://daltonlens.org/colorblindness-simulator" />
+<meta property="og:url" content="https://daltonlens.org/colorblindness-simulator" />
+<meta property="og:site_name" content="DaltonLens" />
+<script type="application/ld+json">
+{"url":"https://daltonlens.org/colorblindness-simulator","headline":"Color Blindness Simulator","@type":"WebPage","description":"Software tools and technical posts to make the life of colorblind people easier. Includes color filters and color blindness simulation.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://daltonlens.org/feed.xml" title="DaltonLens" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-74LT11PF2S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-74LT11PF2S');
+</script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/18.2.0/primer.css" integrity="sha512-b95/dacQxmJ4kEU/hhpnZtl9LutkUE01xIe03TractNdd1YmYd+JcAsg/Or/7oulY0TiejUon3sMD0/DUn+jzA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">DaltonLens</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/colorblindness-simulator">Color Blindness Simulator</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <link rel="stylesheet" href="assets/css/simulator.css">
+<script type="module" src="assets/js/simulator.js"></script>
+
+<div class="home">
+
+<h1>Online Color Blindness Simulators</h1>
+
+<p>
+This page lets you simulate various color vision deficiencies (CVD) directly in
+your browser. There are many simulation methods, with varying degrees of
+accuracy. Several are proposed here and they all have been carefully implemented
+in
+<a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python</a>
+by reviewing the state-of-the-art and testing them against reference
+implementations.
+</p>
+
+<p>
+The python algorithms are run unchanged in the browser thanks to <a
+href="https://pyodide.org/en/stable/">Pyodide</a>. It's not as fast as the
+original numpy Python code, but still reasonable for small images. Otherwise you
+can use <a href="https://daltonlens.org">DaltonLens for Desktop</a> for
+real-time simulations.
+</p>
+
+<h2>Simulated types of CVD</h2>
+<p>
+You can choose between the three common types of color vision deficiencies and
+use the severity slider to switch between full dichromacy and anomalous
+trichromacy. Here are the 3 kinds of CVD that can be simulated:
+
+<table>
+    <tr><td width='15%'>Protanopia / Protanomaly</td><td>Deficient L-cones
+    (roughly centered on red), leading to red-green blindness.
+    <br>Present in some form in ~2% of males and ~0.04% of females.</td></tr>
+    
+    <tr><td width='15%'>Deuteranopia / Deuteranomaly</td><td>Deficient M-cones
+    (roughly centered on green), also leading to red-green blindness. 
+    <br>Present in some form in ~6% of males and ~0.39% of females.</td></tr>
+
+    <tr><td width='15%'>Tritanopia / Tritanomaly</td><td>Deficient S-cones
+    (roughly centered on blue), leading to blue-yellow blindness. 
+    <br>Present in some form in ~0.002% of males and ~0.001% of females (very
+    rare).</td></tr>
+</table>
+
+The deficiency type can be determined via color blindness tests. Serious ones
+have to be done in person with an eye doctor, but online tests like the <a
+href="https://www.colorlitelens.com/color-blindness-test.html">colorlitelens
+tests</a> can give you a good hint.
+
+</p>
+
+<h2>Implemented methods</h2>
+<p>
+<table>
+    <tr><td width='15%'>Brettel 1997</td><td>From the research paper by Brettel, Viénot & Mollon in 1997
+        <a
+        href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.496.7153&rep=rep1&type=pdf"><i>Computerized
+        simulation of color appearance for dichromats</i></a>. This is the most
+        solid reference, and <b>it is the only one that also models tritanopia
+        reasonably well</b> (blue-yellow blindness).</td></tr>
+
+    <tr><td>Viénot 1999</td>
+        <td>From the research paper by Viénot, Brettel & Mollon in 1999
+        <a
+        href="http://vision.psychol.cam.ac.uk/jdmollon/papers/colourmaps.pdf"><i>Digital
+        video colourmaps for checking the legibility of displays by
+        dichromats</i></a>. A simplification of the Brettel 1997 method for
+        protanopia and deuteranopia, so it's a bit faster.
+        </td></tr>
+
+    <tr><td>Machado 2009</td>
+        <td>From the research paper by Machado, Oliveira & Fernandes in 2009            
+        <a
+        href="https://www.inf.ufrgs.br/~oliveira/pubs_files/CVD_Simulation/CVD_Simulation.html"><i>A
+        physiologically-based model for simulation of color vision
+        deficiency</i></a>. Pretty similar to Brettel 1997 for full dichromacy
+        (severity 1), but it has a theory to model anomalous trichromacy for
+        protans and deutans. It is not accurate for tritans though.
+        </td></tr>
+
+    <tr><td>Vischeck</td>
+        <td><a href="https://vischeck.com">Vischeck</a> was a popular website to
+        simulate color blindness. It implemented the Brettel 1997 approach, but
+        using somewhat outdated parameters (derived for CRT monitors). Still
+        it's one of the most solid reference implementation. The website is not
+        running anymore, but <a
+        href="https://github.com/GNOME/gimp/blob/master/modules/display-filter-color-blind.c">the
+        code</a> is now used in the <a
+        href="https://docs.gimp.org/2.10/en/gimp-display-filter-dialog.html">GIMP
+        display filters</a>.
+        </td></tr>
+            
+    <tr><td>Machado 2009 (without sRGB decoding)</td>
+        <td>Same as Machado 2009, but without any sRGB decoding. This is
+        supposed to be wrong, but including it as there were <a
+        href="https://bugzilla.mozilla.org/show_bug.cgi?id=1655053#c22">some
+        online discussions</a> about this as one of the authors said that it was
+        not necessary for their paper.
+        </td></tr>
+        
+    <tr><td>Coblis V1</td>
+        <td>Method that was implemented in the initial version of the <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/">Coblis
+        color simulator.</a>. Unfortunately <b>this one is very inaccurate</b>
+        and has no proper background. This method is also sometimes referred as the
+        "ColorMatrix" from colorjack. You can read more about its history <a
+        href="https://daltonlens.org/opensource-cvd-simulation/#Coblis-and-the-HCIRN-Color-Blind-Simulation-function">here</a>.
+        It is included mostly to show how inaccurate it is. It's still very popular as
+        it was one of the earliest, and is very easy to implement.
+        </td></tr>
+
+    <tr><td>Coblis V2</td>
+        <td>Current method implemented in the <a
+        href="https://www.color-blindness.com/coblis-color-blindness-simulator/">Coblis
+        color simulator.</a>, based on the HCIRN Color Blind Simulation
+        function. It is better than V1, but still lack a solid background</a>,
+        so I do not recommend it.
+        </td></tr>
+    
+</table>
+</p>
+
+<p>
+To learn more about these CVD simulation methods you can check these technical
+articles:
+<ul>
+    <li><a href="opensource-cvd-simulation/">Review of Open Source Color Blindness Simulations</a></li>
+    <li><a href="understanding-cvd-simulation/">Understanding LMS-based Color Blindness Simulations</a></li>
+</ul>
+</p>
+
+<h2>How accurate are color blindness simulations?</h2>
+
+<p>
+These simulations are never perfectly accurate. For one, there are significant
+per-individual variations, so even two strong-deuteranopes are unlikely to have
+the same perception. Then the properties of the monitor, ambient light, etc.
+vary and impact color perception. Last, these models of human perception remain
+simplified approximations.
+</p>
+
+<p>
+This being said you can still expect a reasonable accuracy with Brettel 1997
+(and Vischeck) for the 3 kinds of CVD, and with Viénot 1999 and Machado 2009 for
+protanopia and deuteranopia. I would not recommend the Coblis methods
+(especially V1) as their background is less solid.
+</p>
+
+<p>
+If you have a CVD then you can evaluate the accuracy yourself to some extent. If
+the simulation of your condition were perfect, you would not see any difference
+between the original image and the simulated one. In practice it is likely that
+the simulation will look pretty similar for images with small objects like line
+plots or Ishihara plates, but you might spot more differences on large uniform
+areas as the deficiencies are less severe in that case.
+</p>
+
+<p>
+If you have normal vision then you can't really tell if it's correct or not.
+This is why some inaccurate methods have remained very popular, most people
+can't tell that they're wrong :)
+</p>
+
+<div class="Simulator"> 
+    <h2>Choose an Image</h2>
+    <div style='margin-bottom: 1em;'>
+        <select class="form-select select-lg" id="predefined-images" aria-label="Preset">
+            <option value="images/rgbspan.png">RGB grid</option>
+
+            <!-- 
+                https://waxy.org/2011/01/colorblind_leading_the_blind/
+                https://netflixtechblog.com/netflix-performance-on-top-isp-networks-98cb851389a5 
+            -->
+            <option value="images/netflix_performance.png">Color Line Plot</option>
+            
+            <!-- 
+                Marco Verch
+            https://creativecommons.org/licenses/by/2.0/
+            https://foto.wuestenigel.com/detailed-view-of-colored-pencils-in-a-row/ 
+            -->
+            <option value="images/pencils.jpg">Pencils</option>
+
+            <!-- 
+                By Shinobu Ishihara - Unknown source, Public Domain
+                https://en.wikipedia.org/wiki/Ishihara_test#/media/File:Ishihara_23.PNG             
+            -->
+            <option value="images/Ishihara23_cropped.jpg">Ishihara Plate (42)</option>
+
+            <!-- https://www.jrailpass.com/blog/japan-autumn-leaves-forecast -->
+            <option value="images/japan_leaves.jpg">Automn Leaves</option>
+
+        </select>
+    </div>
+
+    <div class="input">
+    Or upload your own:
+    <input id="input-image" type="file" onchange="loadFile()"><br>
+    </div>
+
+    <div id="large-image-warning" class="flash mt-3 flash-warn" style='display: none;'>
+        <!-- <%= octicon "alert" %> -->
+        <svg class="octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path></svg>
+        The uploaded image is big. It will be downsized to width=800px to make
+        sure that the filters will remain responsive. You can process large
+        images with good performance with
+        <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python</a> or
+        in real-time with <a href="https://daltonlens.org">DaltonLens for Desktop</a>.
+    </div>
+
+    <div class="settings">
+    <form>        
+        <h2>Simulation method</h2>
+
+        <div class="form-checkbox">
+            <label><input value="brettel" type="radio" name="method" checked="true"/>Brettel 1997</label>
+        </div>
+
+        <div class="form-checkbox">
+            <label><input value="vienot" type="radio" name="method"/>Viénot 1999</label>            
+        </div>
+
+        <div class="form-checkbox">
+            <label><input value="machado" type="radio" name="method"/>Machado 2009</label>            
+        </div>
+
+        <div class="form-checkbox">
+            <label><input value="vischeck" type="radio" name="method"/>Vischeck (GIMP)</label>
+        </div>
+        
+        <br>
+
+        <div class="form-checkbox">
+            <label><input value="machadoMissingSRGB" type="radio" name="method"/>Machado 2009 (missing sRGB)</label>            
+        </div>        
+
+        <div class="form-checkbox">
+            <label><input value="coblisv1" type="radio" name="method"/>Coblis V1</label>            
+        </div>
+
+        <div class="form-checkbox">
+            <label><input value="coblisv2" type="radio" name="method"/>Coblis V2</label>            
+        </div>
+
+        <div class=slider>
+            Severity:
+            <input id="severity-slider" type="range" value="10" min="1" max="10" oninput="this.nextElementSibling.value = this.value / 10.0;">
+            <output>1</output>
+        </div>
+        <div class="help">A severity of 1 means full protanopia/deuteranopia/tritanopia.</div>
+
+        <div class="form-checkbox">
+        <label>
+            <input value="none" type="radio" name="cvd" checked="true"/>
+            No CVD (original)
+        </label>
+        </div>
+
+        <div class="form-checkbox">
+        <label>
+            <input value="protan" type="radio" name="cvd"/>
+            Protan (red-blind)
+        </label>
+        </div>
+
+        <div class="form-checkbox">
+        <label>
+            <input value="deutan" type="radio" name="cvd"/>
+            Deutan (green-blind)
+        </label>
+        </div>
+
+        <div class="form-checkbox">
+        <label>
+            <input value="tritan" type="radio" name="cvd"/>
+            Tritan (blue-blind)
+        </label>
+        </div>
+
+    </form>
+
+    </div> <!-- settings -->
+
+    <div id="Python-Progress">
+        Python progress... <span id="Python-Progress-Text"></span>
+        <span class="Progress">
+            <span id="Python-Progress-Percent" class="Progress-item color-bg-success-emphasis" style="width: 50%;"></span>
+        </span>
+        <br>
+    </div>    
+
+    <div class="current-image">
+        <div id="image-with-loader">
+            <img id="img-current" src="" alt="Current Image">
+            <div id="img-loader" class="loader"></div>
+        </div>
+        <div id="img-original-hint" style="font-style: italic; text-align:center;">
+            Hint: click on the image at any time to show the original.
+        </div>
+    </div>
+
+    <div class="method-description none-desc">
+        <div class="code-template" id="none-code-template">
+filtered = image
+        </div>
+        <div class="method-code">
+        <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python code:</a>
+        <pre id="none-code"></pre>
+        </div>
+    </div>
+
+    <div class="method-description brettel-desc">
+        <div class="code-template" id="brettel-code-template">
+simulator = simulate.Simulator_Brettel1997()
+filtered = simulator.simulate_cvd(image, deficiency=simulate.Deficiency.#{deficiency}, severity=#{severity})
+        </div>
+        <div class="method-code">
+        <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python code:</a>
+        <pre id="brettel-code"></pre>
+        </div>
+    </div>
+
+    <div class="method-description vienot-desc">
+        <div class="code-template" id="vienot-code-template">
+simulator = simulate.Simulator_Vienot1999()
+filtered = simulator.simulate_cvd(image, deficiency=simulate.Deficiency.#{deficiency}, severity=#{severity})
+        </div>
+        <div class="method-code">
+        <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python code:</a>
+        <pre id="vienot-code"></pre>
+        </div>
+    </div>
+
+    <div class="method-description machado-desc">
+        <div class="code-template" id="machado-code-template">
+simulator = simulate.Simulator_Machado2009()
+filtered = simulator.simulate_cvd(image, deficiency=simulate.Deficiency.#{deficiency}, severity=#{severity})
+        </div>
+        <div class="method-code">
+        <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python code:</a>
+        <pre id="machado-code"></pre>
+        </div>
+    </div>
+
+    <div class="method-description vischeck-desc">
+        <div class="code-template" id="vischeck-code-template">
+simulator = simulate.Simulator_Vischeck()
+filtered = simulator.simulate_cvd(image, deficiency=simulate.Deficiency.#{deficiency}, severity=#{severity})
+        </div>
+        <div class="method-code">
+        <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python code:</a>
+        <pre id="vischeck-code"></pre>
+        </div>
+    </div>
+
+    <div class="method-description machadoMissingSRGB-desc">
+        <div class="code-template" id="machadoMissingSRGB-code-template">
+simulator = simulate.Simulator_Machado2009()
+simulator.imageEncoding = convert.ImageEncoding.LINEAR_RGB
+filtered = simulator.simulate_cvd(image, deficiency=simulate.Deficiency.#{deficiency}, severity=#{severity})
+        </div>
+        <div class="method-code">
+        <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python code:</a>
+        <pre id="machadoMissingSRGB-code"></pre>
+        </div>
+    </div>
+
+    <div class="method-description coblisv1-desc">
+        <div class="code-template" id="coblisv1-code-template">
+simulator = simulate.Simulator_CoblisV1()
+filtered = simulator.simulate_cvd(image, deficiency=simulate.Deficiency.#{deficiency}, severity=#{severity})
+        </div>
+        <div class="method-code">
+        <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python code:</a>
+        <pre id="coblisv1-code"></pre>
+        </div>
+    </div>
+
+    <div class="method-description coblisv2-desc">
+        <div class="code-template" id="coblisv2-code-template">
+simulator = simulate.Simulator_CoblisV2()
+filtered = simulator.simulate_cvd(image, deficiency=simulate.Deficiency.#{deficiency}, severity=#{severity})
+        </div>
+        <div class="method-code">
+        <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python code:</a>
+        <pre id="coblisv2-code"></pre>
+        </div>
+    </div>
+    
+</div>
+
+</div> <!-- class=home -->
+
+<br><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="DaltonLens/daltonlens.org"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Software tools and technical posts to make the life of colorblind people easier. Includes color filters and color blindness simulation.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/DaltonLens" title="DaltonLens"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/DaltonLens" title="DaltonLens"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

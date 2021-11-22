@@ -1,0 +1,118 @@
+/* For the tables of methods */
+
+table td {
+    border: 2px solid #e8e8e8;
+}
+
+/* For the severity slider */
+
+.slider {
+    /* Use flexbox for slider wrapper element */
+    display:flex;
+    /* Direct alignment of content along horizontal axis */
+    flex-direction:row;
+    /* Tell's flexbox to center content around the non-horizontal axis (ie around the vertical axis) */
+    align-items:center;
+    font-weight: bold;
+}
+
+.slider input {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    width: 25%;
+    min-width: 20%;
+}
+
+.help {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 14px;
+}
+
+/* To place the loader wheel on top of the center of the image */
+
+#image-with-loader {
+    position: relative;
+}
+
+#img-loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;  
+}
+
+.loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0%   { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.method-description {
+    clear: left;
+    display: none; /* start hidden */
+    /* margin-top: 4em; */
+}
+
+.method-description-text {
+    font-style: italic;
+    margin-top: 1em;
+}
+
+.method-code {
+    margin-top: 1em;
+}
+
+.method-code pre {
+    margin-bottom: 0em !important;
+}
+
+.method-description pre {
+    font-style: normal;   
+}
+
+.code-template {
+    display: none;
+}
+
+.cvd-description {
+    clear: left;
+    display: none; /* start hidden */
+    font-style: italic;
+    /* margin-top: 4em; */
+}
+
+.form-checkbox {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.select-lg {
+    font-size: 16px;
+}
+
+.current-image {    
+    display: none;
+}
+
+.current-image img {
+    display: block;
+    min-width: 50%;
+    max-width: 100%;
+    margin: auto;
+    height: auto;
+    
+    /* disable touch events on mobile so we can still tap on the image to show the original */
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
