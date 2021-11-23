@@ -239,7 +239,7 @@ articles:
 </ul>
 </p>
 
-<h2>How accurate are color blindness simulations?</h2>
+<h2>How accurate are these color blindness simulations?</h2>
 
 <p>
 These simulations are never perfectly accurate. For one, there are significant
@@ -258,11 +258,21 @@ protanopia and deuteranopia. I would not recommend the Coblis methods
 
 <p>
 If you have a CVD then you can evaluate the accuracy yourself to some extent. If
-the simulation of your condition were perfect, you would not see any difference
-between the original image and the simulated one. In practice it is likely that
-the simulation will look pretty similar for images with small objects like line
-plots or Ishihara plates, but you might spot more differences on large uniform
-areas as the deficiencies are less severe in that case.
+you have a strong deficiency (dichromat) and if the simulation of your condition
+were perfect, then you would not see any difference between the original image
+and the simulated one. If your deficiency is weaker (anomalous trichromacy),
+you'll need to adjust the severity slider, and the model that allows the
+differences to vanish with the highest degree of severity would be the most
+accurate.  Note that only the Machado et al. 2009 approach actually tries to model
+anomalous trichromacy, the other ones are just interpolating with the original
+image.
+</p>
+
+<p>
+In practice it is likely that the simulated image will look very similar for
+images with small objects like line plots or Ishihara plates, but you might spot
+more differences on large uniform areas as the deficiencies are less severe in
+that case.
 </p>
 
 <p>
