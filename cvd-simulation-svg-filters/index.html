@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Accurate SVG filters for color blindness simulation | DaltonLens</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Accurate SVG filters for color blindness simulation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Protanopia and deuteranopia are easy to implement with a single matrix multiplication, but tritanopia requires special care and a more subtle pipeline. Let’s see how we can still implement the state-of-the-art approach of Brettel et al. with SVG filters." />
+<meta property="og:description" content="Protanopia and deuteranopia are easy to implement with a single matrix multiplication, but tritanopia requires special care and a more subtle pipeline. Let’s see how we can still implement the state-of-the-art approach of Brettel et al. with SVG filters." />
+<link rel="canonical" href="https://daltonlens.org/cvd-simulation-svg-filters/" />
+<meta property="og:url" content="https://daltonlens.org/cvd-simulation-svg-filters/" />
+<meta property="og:site_name" content="DaltonLens" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-11-25T00:00:00-06:00" />
+<script type="application/ld+json">
+{"url":"https://daltonlens.org/cvd-simulation-svg-filters/","headline":"Accurate SVG filters for color blindness simulation","dateModified":"2021-11-25T00:00:00-06:00","datePublished":"2021-11-25T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://daltonlens.org/cvd-simulation-svg-filters/"},"description":"Protanopia and deuteranopia are easy to implement with a single matrix multiplication, but tritanopia requires special care and a more subtle pipeline. Let’s see how we can still implement the state-of-the-art approach of Brettel et al. with SVG filters.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://daltonlens.org/feed.xml" title="DaltonLens" /><!-- the google_analytics_id gets auto inserted from the config file -->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-74LT11PF2S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-74LT11PF2S');
+</script>
+
+
+<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/18.2.0/primer.css" integrity="sha512-b95/dacQxmJ4kEU/hhpnZtl9LutkUE01xIe03TractNdd1YmYd+JcAsg/Or/7oulY0TiejUon3sMD0/DUn+jzA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><!-- Copied from https://github.com/jekyll/minima/blob/master/_includes/header.html -->
+<header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">DaltonLens</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          <!-- Edited manually so I could add links to the index page and better control the display. -->
+          <a class="page-link" href="/#software">Software</a>
+          <a class="page-link" href="/#posts">Posts</a>
+          <a class="page-link" href="/colorblindness-simulator">Color Blindness Simulator</a>
+          <a class="page-link" href="/about/">About</a>
+          <!--<a class="page-link" href="/about/">About</a><a class="page-link" href="/colorblindness-simulator">Online Color Blindness Simulator</a>-->
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Accurate SVG filters for color blindness simulation</h1><p class="page-description">Protanopia and deuteranopia are easy to implement with a single matrix multiplication, but tritanopia requires special care and a more subtle pipeline. Let's see how we can still implement the state-of-the-art approach of Brettel et al. with SVG filters.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-11-25T00:00:00-06:00" itemprop="datePublished">
+        Nov 25, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h1"><a href="#starting-easy-implementing-the-viénot-1999-filter">Starting easy, implementing the Viénot 1999 filter</a></li>
+<li class="toc-entry toc-h1"><a href="#implementing-brettel-1997">Implementing Brettel 1997</a></li>
+<li class="toc-entry toc-h1"><a href="#conclusion">Conclusion</a></li>
+<li class="toc-entry toc-h1"><a href="#bibliography">Bibliography</a></li>
+</ul><h1 id="introduction">
+<a class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>We have seen in <a href="opensource-cvd-simulation/">Review of Open Source Color Blindness
+Simulations</a> and <a href="understanding-cvd-simulation/">Understanding LMS-based Color
+Blindness Simulations</a> that a pretty accurate
+simulation of the 3 main color vision deficiencies (protanopia, deuteranopia and
+tritanopia) can be achieved by the <a class="citation" href="#brettel_computerized_1997">(Brettel, Viénot, &amp; Mollon, 1997)</a> method,
+and that a simpler viable algorithm for protanopia and deuteranopia is given by
+<a class="citation" href="#vienot_digital_1999">(Viénot, Brettel, &amp; Mollon, 1999)</a>.</p>
+
+<p>Being able to do the CVD simulation via <a href="https://www.w3schools.com/graphics/svg_filters_intro.asp">SVG
+filters</a> is very handy
+to enable efficient browser extension (eg.
+<a href="https://github.com/oftheheadland/Colorblindly">Colorblindly</a>) or even to
+implement the <a href="https://developer.chrome.com/blog/cvd/">developer tools in Google
+Chrome</a> or Mozilla Firefox. This makes
+it easy for web developers to check if their design is color blind
+friendly.</p>
+
+<p>The SVG filters primitives are quite limited though, mostly matrix
+multiplication, convolution and blending.</p>
+
+<p>The good news is that these CVD algorithms are pretty simple to implement,
+especially the Viénot 1999 one. It ends up being a single 3x3 matrix
+multiplication of the linear rgb values.</p>
+
+<p>However the Brettel 1997 one is required for accurate tritanopia simulation, but
+unfortunately it’s a bit more complex. The direct implementation needs to
+convert the RGB values to the LMS color space (one 3x3 matrix multiplication),
+apply a dot product with the normal of the separation plane to choose one
+projection matrix among two possibilities, apply the selected projection matrix
+and go back to RGB from LMS (another 3x3 matrix multiplication). Let’s see how
+we can still implement that with an SVG filter.</p>
+
+<h1 id="starting-easy-implementing-the-viénot-1999-filter">
+<a class="anchor" href="#starting-easy-implementing-the-vi%C3%A9not-1999-filter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Starting easy, implementing the Viénot 1999 filter</h1>
+
+<p>The overall setup of the CSS + SVG properties in HTML is not our main topic
+here, so I’ll refer to e.g. <a href="https://developer.chrome.com/blog/cvd/">Simulating color vision deficiencies in the Blink
+Renderer</a> if you want more details.</p>
+
+<p>A reference html page is available in
+<a href="https://github.com/DaltonLens/libDaltonLens/blob/master/svg/cvd_svg_filters.html">libDaltonLens</a>,
+which can be visualized directly <a href="https://daltonlens.github.io/libDaltonLens/svg/cvd_svg_filters.html">in this live
+demo</a>.</p>
+
+<p>This is what the code looks like for protanopia:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;filter id="protanopia" color-interpolation-filters="linearRGB"&gt;
+    &lt;feColorMatrix type="matrix" in="SourceGraphic" values="
+        0.10889,0.89111,-0.00000,0,0
+        0.10889,0.89111,0.00000,0,0
+        0.00447,-0.00447,1.00000,0,0
+        0,0,0,1,0"
+    /&gt;
+&lt;/filter&gt;
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">feColorMatrix</code> specifies a 4x5 matrix that takes a vector <code class="language-plaintext highlighter-rouge">[R G B A 1]</code> and
+returns the transformed <code class="language-plaintext highlighter-rouge">[R' G' B' A']</code>. As we’ve seen in previous articles it
+is very important that the filter happens in the linear RGB space, hence the
+<code class="language-plaintext highlighter-rouge">color-interpolation-filters="linearRGB"</code> attribute. It should be the default,
+but it never hurts to be explicit.</p>
+
+<p>Here the matrix content was dumped from <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python</a>, and it corresponds to a combined sequence of going from RGB to LMS, applying a projection and going back to RGB.</p>
+
+<h1 id="implementing-brettel-1997">
+<a class="anchor" href="#implementing-brettel-1997" aria-hidden="true"><span class="octicon octicon-link"></span></a>Implementing Brettel 1997</h1>
+
+<p>Instead of a single projection matrix, Brettel 1997 needs two, one for each half-plane in the LMS space. Here is the pseudo-code:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lms = LMS_from_RGB . rgb
+H = (planeSepNormal^t . lms  &gt;= 0) ? H1 : H2
+lms_cvd = H . lms
+rgb_cvd = RGB_from_LMS . lms_cvd
+</code></pre></div></div>
+
+<p>with <code class="language-plaintext highlighter-rouge">LMS_from_RGB, RGB_from_LMS, H1 and H2</code> some constant 3x3 matrices (only depends on the CVD type), and <code class="language-plaintext highlighter-rouge">planeSepNormal</code> a 3d vector representing the normal of the separation plane in the LMS space.</p>
+
+<p>We don’t really have convenient conditionals with SVG filters, so it’s not
+straightforward to adapt. But first we can simplify this pipeline by combining
+the two possible sequences into just two 3x3 matrices:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rgb_cvd_from_rgb_1 = RGB_from_LMS . H1 . LMS_from_RGB
+rgb_cvd_from_rgb_2 = RGB_from_LMS . H2 . LMS_from_RGB
+</code></pre></div></div>
+
+<p>Then our problem becomes to choose between these two, and this can also be written without explicitly going to LMS:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>planeSepNormal . lms = planeSepNormal^t . LMS_from_RGB . rgb
+                     = planeSepNormal_rgb . rgb
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">planeSepNormal_rgb</code> is still a constant 3d vector and it can be precomputed. Now the overall pipeline becomes:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>H = (planeSepNormal_rgb . rgb &gt;= 0) ? rgb_cvd_from_rgb_1 : rgb_cvd_from_rgb_2
+rgb_cvd = H . rgb
+</code></pre></div></div>
+
+<p>Ok, that seems easier! The feature which is the closest to a conditional in the SVG filter is <code class="language-plaintext highlighter-rouge">feBlend</code>. It takes two images as an input, and will combine then depending on the alpha values of each image. So instead of applying a conditional to each pixel, we can just generate two images, one with <code class="language-plaintext highlighter-rouge">rgb_cvd_from_rgb_1</code>, another one with <code class="language-plaintext highlighter-rouge">rgb_cvd_from_rgb_2</code>, and make sure that the first image has <code class="language-plaintext highlighter-rouge">alpha=1</code> when we should indeed pick the pixel from that first image, and <code class="language-plaintext highlighter-rouge">alpha=0</code> when we should take the value from the second image.</p>
+
+<p>Our condition is <code class="language-plaintext highlighter-rouge">(planeSepNormal_rgb . rgb &gt;= 0)</code>, we just need to transform that into an <code class="language-plaintext highlighter-rouge">alpha</code> that is either 0 or 1. Computing <code class="language-plaintext highlighter-rouge">alpha = planeSepNormal_rgb . rgb</code> is easy, we can just add <code class="language-plaintext highlighter-rouge">planeSepNormal_rgb</code> to the fourth row of the <code class="language-plaintext highlighter-rouge">feColorMatrix</code>. But then we need to threshold that so that alpha becomes 1 if it’s higher than 0.</p>
+
+<p>The primitive we can use to threshold is <code class="language-plaintext highlighter-rouge">feComponentTransfer</code> and <code class="language-plaintext highlighter-rouge">feFunc</code>. It has a <code class="language-plaintext highlighter-rouge">discrete</code> mode that can map slices of the input range into specific values. For example <code class="language-plaintext highlighter-rouge">&lt;feFuncA type="discrete" tableValues="0 1"/&gt;</code> would split the input range in two, and transform the alpha channel such that values between 0 and 0.5 become 0 and values between 0.5 and 1 become 1.</p>
+
+<p>So one idea is to make the fourth row of <code class="language-plaintext highlighter-rouge">feColorMatrix</code> also include a 0.5 offset, such that <code class="language-plaintext highlighter-rouge">alpha = planeSepNormal_rgb . rgb + 0.5</code>. Then we can threshold that: values below 0.5 to 0 and values above it to 1.</p>
+
+<p>This almost works, but has two caveats:</p>
+
+<ul>
+  <li>
+    <p>The original alpha information is lost. So this only works if the input graphics is fully opaque. Even worse, there is a weird situation with Google Chrome where some extra padding with zero transparency will get transformed (sounds like a bug). We can workaround that one by keeping the original alpha, but <em>subtracting</em> 0.5 to it. This way if it was zero, it’ll remain zero.</p>
+  </li>
+  <li>
+    <p>Images are stored as 32 bit RGBA (8 bit per channel) with premultiplied alpha, which means that the intermediate rgb will be multiplied by a value centered around 0.5 and clamped + rounded to [0,255]. To avoid losing too much precision we can make it a bit higher, e.g. 0.8 and use a threshold that transforms values higher than 0.8 into 1 with <code class="language-plaintext highlighter-rouge">&lt;feFuncA type="discrete" tableValues="0 0 0 0 1"/&gt;</code>.</p>
+  </li>
+</ul>
+
+<p>Combined together, we get this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;filter id="tritanopia" color-interpolation-filters="linearRGB"&gt;    
+&lt;!-- 
+    Projection on plane 1. 
+    alpha &lt; 0.8 means we should use the projection on plane 2 
+--&gt;
+&lt;feColorMatrix type="matrix" in="SourceGraphic" result="ProjectionOnPlane1" values="
+    1.01354, 0.14268, -0.15622, 0, 0
+    -0.01181, 0.87561, 0.13619, 0, 0
+    0.07707, 0.81208, 0.11085, 0, 0
+    7.92482, -5.66475, -2.26007, 1, -0.2"
+    &lt;!-- That last row is computing alpha --&gt;
+/&gt;
+&lt;!-- 
+    Binarize alpha. 5 values means the last chunk will start at 0.8.
+    All the values below 0.8 will become 0 (correspond to the dot
+    product with the separation plane being negative) and above will become 1
+--&gt;        
+&lt;feComponentTransfer in="ProjectionOnPlane1" result="ProjectionOnPlane1"&gt;
+    &lt;feFuncA type="discrete" tableValues="0 0 0 0 1"/&gt;
+&lt;/feComponentTransfer&gt;
+
+&lt;!-- Project on the second plane. --&gt;
+&lt;feColorMatrix type="matrix" in="SourceGraphic" result="ProjectionOnPlane2" values="
+    0.93337, 0.19999, -0.13336, 0, 0
+    0.05809, 0.82565, 0.11626, 0, 0
+    -0.37923, 1.13825, 0.24098, 0, 0
+    0,0,0,1,0"
+/&gt;
+
+&lt;!-- Blend the two projections, picking one or the other depending on alpha. --&gt;
+&lt;feBlend in="ProjectionOnPlane1" in2="ProjectionOnPlane2" mode="normal"/&gt;
+&lt;/filter&gt;
+</code></pre></div></div>
+
+<h1 id="conclusion">
+<a class="anchor" href="#conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h1>
+
+<p>This filter does the job overall for opaque content and is pretty efficient. We still need to address the loss of the alpha channel to actually use it to render entire webpages. I tried to play around with an additional blending to transfer the alpha channel of the source image to the final image, but without success so far, and I ran out of time for this experiment. Let me know if you have an idea!</p>
+
+<h1 id="bibliography">
+<a class="anchor" href="#bibliography" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bibliography</h1>
+
+<ol class="bibliography">
+<li><span id="brettel_computerized_1997">Brettel, H., Viénot, F., &amp; Mollon, J. D. (1997). Computerized simulation of color appearance for dichromats. <i>Journal of the Optical Society of America. A, Optics, Image Science, and Vision</i>, <i>14</i>(10), 2647–2655. https://doi.org/10.1364/josaa.14.002647</span></li>
+<li><span id="vienot_digital_1999">Viénot, F., Brettel, H., &amp; Mollon, J. D. (1999). Digital video colourmaps for checking the legibility of displays by dichromats. <i>Color Research &amp; Application</i>, <i>24</i>(4), 243–252.</span></li>
+</ol>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="DaltonLens/daltonlens.org"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/cvd-simulation-svg-filters/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Software tools and technical posts to make the life of colorblind people easier. Includes color filters and color blindness simulation.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/DaltonLens" title="DaltonLens"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/DaltonLens" title="DaltonLens"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
