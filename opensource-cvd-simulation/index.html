@@ -116,7 +116,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      24 min read
+      25 min read
     
 </span></p>
 
@@ -455,6 +455,9 @@ So, to summarize:</p>
 <p>More discussion and comparisons can be found in the <a class="citation" href="#simon_liedtke_using_2016">(Simon-Liedtke &amp; Farup, 2016)</a> paper. It includes an evaluation of the <a class="citation" href="#kotera_optimal_2012">(Kotera, 2012)</a> method, which I did not include as I haven't found open source implementations, and it performs worse than Viénot and Brettel in that study.</p>
 <p>Also worth reading is the evaluation of <a class="citation" href="#lillo_experimental_2014">(Lillo, Álvaro, &amp; Moreira, 2014)</a>, also concluding that Brettel 1997 (using Vischeck's implementation) is pretty accurate. They also evaluate Coblis, concluding that it is pretty inaccurate. But given the dates it was probably V1, so it does not allow us to conclude about Coblis V2.</p>
 <p>One last thing to keep in mind in that there are many ways to implement the RGB to LMS color space conversion, so it's a little bit of a jungle there. We'll discuss that more in depth in a future post, but the good news is that in most cases the final results will still be reasonable.</p>
+<blockquote>
+<p><strong>[Update Nov 2021]</strong> I've been collecting feedback in a <a href="https://www.reddit.com/r/ColorBlind/comments/qzkl7h/lets_collectively_determine_the_best_color/">r/colorblind reddit thread</a>, and it seems that Brettel 1997 and Viénot 1999 are the clear winners (once adapted to sRGB). <strong>Machado 2009 consistently ranks lower</strong>. I think one big issue with Machado 2009 is that a proper sRGB decoding was not implemented (see <a href="https://github.com/aalto-ui/aim/pull/13">the discussion here</a>). It was likely not a problem for their evaluation using color with medium brightness (as suggested in <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1655053#c22">this thread in bugzilla</a>), but it is for the full range of colors. Following that it's also unclear how they tuned their parameters to match the output of Brettel 1997, did they include sRGB decoding or not? Given this I would only recommend to try it for anomalous trichromacy (with un-evaluated accuracy, but at least a sound theory), but not full dichromacy.</p>
+</blockquote>
 
 </div>
 </div>
@@ -465,7 +468,21 @@ So, to summarize:</p>
 <h1 id="I-just-want-to-copy-some-code!">
 <a class="anchor" href="#I-just-want-to-copy-some-code!" aria-hidden="true"><span class="octicon octicon-link"></span></a>I just want to copy some code!<a class="anchor-link" href="#I-just-want-to-copy-some-code!"> </a>
 </h1>
-<p>Ok, so while writing this article I realized that we still didn't have a single place to look for a reference implementation that developers can just copy/paste/adapt. This is why I've written <a href="https://github.com/DaltonLens/libDaltonLens">libDaltonLens</a>, a minimalistic single-file library with a public domain license that tries to fix that. It's in C, with zero dependencies, and unit tested against reference implementations. <a href="https://github.com/DaltonLens/DaltonLens/blob/master/Dalton/OpenGL_Shaders.cpp">DaltonLens for desktop</a> has an OpenGL version of that code, and <a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python</a> has unit-tested implementations of the 3 methods discussed above. But the code of the latter is targeted towards experimentation and research, so it's a bit less minimal.</p>
+<p>Ok, so while writing this article I realized that we still didn't have a single place to look for a reference implementation that developers can just copy/paste/adapt. This is why I've written a number of different implementations:</p>
+<ul>
+<li>
+<p><strong><a href="https://github.com/DaltonLens/libDaltonLens">libDaltonLens</a></strong>, a minimalistic single-file library with a public domain license that tries to fix that. It's <strong>in C, with zero dependencies</strong>, and unit tested against reference implementations.</p>
+</li>
+<li>
+<p><strong><a href="https://github.com/DaltonLens/DaltonLens-Python">DaltonLens-Python</a></strong> has unit-tested implementations of the 3 methods discussed above. It is targeted towards experimentation and research, so it's a bit less minimal.</p>
+</li>
+<li>
+<p><a href="https://github.com/DaltonLens/DaltonLens/blob/master/Dalton/OpenGL_Shaders.cpp">DaltonLens for desktop</a> has an <strong>OpenGL version</strong> of that code</p>
+</li>
+<li>
+<p>libDaltonLens also include <strong><a href="https://github.com/DaltonLens/libDaltonLens/tree/master/svg">SVG filters</a></strong>, including Brettel 1997 for tritanopia, which was <a href="https://daltonlens.org/cvd-simulation-svg-filters/">not trivial to implement</a>. Here is a <a href="https://daltonlens.github.io/libDaltonLens/svg/cvd_svg_filters.html">live demo</a>.</p>
+</li>
+</ul>
 <p>Otherwise I'd recommend these open source software:</p>
 <ul>
 <li>
