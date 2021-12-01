@@ -7,7 +7,7 @@
 # https://learnxinyminutes.com/docs/yaml/
 
 title: DaltonLens
-description: Software tools and technical posts to make the life of colorblind people easier. Includes color filters and color blindness simulation.
+description: Software and technical posts about color blindness.
 github_username: DaltonLens
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "daltonlens.org"
