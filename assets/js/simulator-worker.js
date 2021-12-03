@@ -15,7 +15,7 @@ class PythonSimulator {
         progress("DaltonLens", 60);
         await this.pyodide.runPython(`
             import micropip
-            micropip.install('../python/daltonlens-0.1.5-py3-none-any.whl')
+            micropip.install('../python/daltonlens-0.1.6-py3-none-any.whl')
         `);
 
         progress("Pillow", 80);

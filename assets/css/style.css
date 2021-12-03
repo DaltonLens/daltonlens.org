@@ -484,7 +484,7 @@ pre code { font-size: 15px !important; }
 
 p code { font-size: 19px; }
 
-.page-content { font-size: 16px; color: #515151; text-align: justify; }
+.page-content { font-size: 16px; color: #515151; text-align: justify; font-family: "Segoe UI", SegoeUI, "Segoe WP", "Helvetica Neue", "Helvetica", "Tahoma", "Arial", sans-serif !important; }
 
 .home p, .home li, .post-content p, .post-content li { font-size: 16px; color: #515151; text-align: justify; }
 
