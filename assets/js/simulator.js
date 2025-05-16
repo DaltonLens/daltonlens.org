@@ -252,8 +252,12 @@ ready(function(){
     
     const img_current = document.getElementById('img-current');
     ['mousedown', 'touchstart'].forEach(function (evt) {
-        img_current.addEventListener(evt, function () {
+        img_current.addEventListener(evt, function (event) {
             if (numFiltersStillProcessing > 0) {
+                return;
+            }
+            // Skip if it's a mouse event and not the left button
+            if (evt === 'mousedown' && event.button !== 0) {
                 return;
             }
             cvdOptionBeforeMousedown = document.querySelector("input[name='cvd']:checked");
@@ -264,9 +268,13 @@ ready(function(){
     });
 
     ['mouseup', 'touchend'].forEach(function (evt) {
-        img_current.addEventListener(evt, function () {
+        img_current.addEventListener(evt, function (event) {
             if (!cvdOptionBeforeMousedown)
                 return;
+            // Skip if it's a mouse event and not the left button
+            if (evt === 'mouseup' && event.button !== 0) {
+                return;
+            }
             cvdOptionBeforeMousedown.checked = true;
             updateCVDType();
         },
